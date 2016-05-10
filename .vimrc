@@ -1,6 +1,7 @@
 call plug#begin()
 
 " Languages/support
+Plug 'posva/vim-vue'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-rails'
 Plug 'derekwyatt/vim-scala'
@@ -133,7 +134,7 @@ nnoremap <leader>eu :tabe ~/.config/nyaovim/nyaovimrc.html<cr>
 "------------------- Edit & load .vimrc file -----------------------------
 nnoremap <leader>ez :tabe ~/.zshrc<cr>
 
-" STATUS BAR CONFIG
+"------------------- Lightline ------------------------------------------
 set laststatus=2 " show statusline
 let g:lightline = {
       \ 'active': {
@@ -165,6 +166,8 @@ function! MyFileformat()
 endfunction
 
 "---------------------------- Toggle relativenumber --------------------"
+nnoremap <leader>n :call NumberToggle()<cr>
+
 function! NumberToggle()
   if(&relativenumber == 1)
         set norelativenumber
@@ -172,8 +175,6 @@ function! NumberToggle()
         set relativenumber
   endif
 endfunc
-
-nnoremap <leader>n :call NumberToggle()<cr>
 
 " .po to .mo compilation
 nnoremap <leader>mo :call CompilePoToMo()<CR>
@@ -204,7 +205,7 @@ endfunction
 autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
 
-" run current php file in console
+" run current file in console
 nnoremap <leader>rf :call RunFile()<CR>
 func! RunFile()
 	if &filetype == 'php'
