@@ -23,9 +23,15 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-alias p="./vendor/bin/phpunit"
+if [ -f $HOME/.aliases ]; then
+    source $HOME/.aliases
+fi
+alias pserve="xdg-open http://localhost:8080 >> /dev/null 2>&1 && php -S localhost:8080"
+alias lserve="xdg-open http://localhost:8000 >> /dev/null 2>&1 && php artisan serve"
+alias pt="./vendor/bin/phpunit"
 alias vi="nvim"
 alias vim="nvim"
+alias sip="$HOME/Dropbox/code/setproxy.sh"
 
 # tmux color fixes
 export TERM="xterm-256color"
@@ -36,8 +42,11 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 #PhantomJS
 export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
 
-#GOPATH
-export GOPATH="$HOME/.vagrant-golang/pkg"
+#Golang
+# export PATH="$PATH:$HOME/.gvm/scripts/gvm"
+source $HOME/.gvm/scripts/gvm
+# export GOPATH="$HOME/.go/pkg"
+# export PATH="$PATH:$GOPATH/bin/"
 
 #Selinium server alias
 alias sserve="java -jar $HOME/.local/bin/selenium-server-standalone-2.53.0.jar"
@@ -70,5 +79,11 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 ### FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+## Play Framework
 export PATH=$PATH:/opt/activator
 
+eval $(thefuck --alias)
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

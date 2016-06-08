@@ -4,40 +4,33 @@ call plug#begin()
 Plug 'posva/vim-vue'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-rails'
+Plug 'evidens/vim-twig'
 Plug 'derekwyatt/vim-scala'
 Plug 'alvan/vim-php-manual'
+Plug 'stephpy/vim-php-cs-fixer'
 Plug 'shawncplus/phpcomplete.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
 " Navigation
 Plug 'easymotion/vim-easymotion'
-Plug 'eugen0329/vim-esearch'
+Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Version Control
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Misc
+Plug 'gosukiwi/vim-atom-dark'
 Plug 'morhetz/gruvbox'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'chriskempson/tomorrow-theme'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'garbas/vim-snipmate' | Plug 'MarcWeber/vim-addon-mw-utils' | Plug 'tomtom/tlib_vim' | Plug 'honza/vim-snippets'
-
-function! BuildComposer(info)
-    if a:info.status != 'unchanged' || a:info.force
-        !cargo build --release
-        UpdateRemotePlugins
-    endif
-endfunction
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
 
 call plug#end()
 
@@ -45,9 +38,11 @@ let mapleader = "\<Space>"
 
 "Theme
 syntax enable
-colorscheme Tomorrow-Night
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme atom-dark-256
 set background=dark
 
+set laststatus=0                            "no status line
 set number
 set relativenumber
 set backspace=indent,eol,start				"for making backspace behave like normal editor
@@ -102,6 +97,8 @@ let g:syntastic_always_populate_loc_list = 2
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_html_checkers=['']
+let g:syntastic_javascript_checkers=['']
 function! ToggleErrors()
     if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
          " No location/quickfix list shown, open syntastic error location panel
@@ -133,37 +130,6 @@ nnoremap <leader>eu :tabe ~/.config/nyaovim/nyaovimrc.html<cr>
 
 "------------------- Edit & load .vimrc file -----------------------------
 nnoremap <leader>ez :tabe ~/.zshrc<cr>
-
-"------------------- Lightline ------------------------------------------
-set laststatus=2 " show statusline
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-     \ 'component_function': {
-      \   'filetype': 'MyFiletype',
-      \   'fileformat': 'MyFileformat',
-      \ }
-\ }
-
-function! MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-    return winwidth(0) > 70 ? (&fileformat) : ''
-endfunction
 
 "---------------------------- Toggle relativenumber --------------------"
 nnoremap <leader>n :call NumberToggle()<cr>
@@ -210,9 +176,12 @@ nnoremap <leader>rf :call RunFile()<CR>
 func! RunFile()
 	if &filetype == 'php'
 		exec "!php %:p"
-	endif
-	if &filetype == 'go'
+    elseif &filetype == 'go'
 		exec "!go run %:p"
+    endif &filetype == 'sh'
+		exec "!.%:p"
+    endif &filetype == 'javascript'
+		exec "!node %:p"
 	endif
 endfunc
 
@@ -303,6 +272,7 @@ vnoremap <c-s> <Esc>:w<CR> " visual mode: escape to normal and save
 
 " set filetype for ractive template for pagevamp
 autocmd BufNewFile,BufRead *.js.twig   set syntax=javascript
+autocmd BufNewFile,BufRead *.twig   set syntax=twig
 
 " ZFZ Fuzzy finder in go
 set rtp+=~/.fzf
@@ -317,3 +287,5 @@ nmap ga <Plug>(EasyAlign)
 
 nnoremap <leader>tt :terminal <CR>
 
+let g:php_cs_fixer_level = "psr2" 
+let g:php_cs_fixer_config_file = '.php_cs'
