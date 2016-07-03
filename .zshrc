@@ -3,7 +3,8 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="ys"
 
-plugins=(git composer httpie vi-mode vagrant)
+
+plugins=(git composer httpie vi-mode emacs docker)
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -23,27 +24,19 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-if [ -f $HOME/.aliases ]; then
-    source $HOME/.aliases
-fi
 alias pserve="xdg-open http://localhost:8080 >> /dev/null 2>&1 && php -S localhost:8080"
 alias lserve="xdg-open http://localhost:8000 >> /dev/null 2>&1 && php artisan serve"
 alias pt="./vendor/bin/phpunit"
 alias vi="nvim"
-alias vim="nvim"
 alias sip="$HOME/Dropbox/code/setproxy.sh"
-
+alias artisan="php artisan"
 # tmux color fixes
 export TERM="xterm-256color"
 
 # Composer
-export PATH="$PATH:$HOME/.composer/vendor/bin"
+# export PATH="$PATH:$HOME/.composer/vendor/bin"
+export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
-#PhantomJS
-export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
-
-#Golang
-# export PATH="$PATH:$HOME/.gvm/scripts/gvm"
 source $HOME/.gvm/scripts/gvm
 # export GOPATH="$HOME/.go/pkg"
 # export PATH="$PATH:$GOPATH/bin/"
@@ -87,3 +80,6 @@ eval $(thefuck --alias)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+## Cask
+export PATH="$HOME/.cask/bin:$PATH"
