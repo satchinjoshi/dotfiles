@@ -12,8 +12,6 @@
 (depends-on "flymake-coffee")
 (depends-on "flymake-php")
 (depends-on "git-gutter+")
-(depends-on "helm")
-(depends-on "helm-projectile")
 (depends-on "magit")
 (depends-on "material-theme")
 (depends-on "package-build")

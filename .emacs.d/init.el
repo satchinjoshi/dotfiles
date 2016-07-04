@@ -4,6 +4,20 @@
 (require 'pallet)
 (pallet-mode t)
 
+; ctrl-u for vim instead of emacs repeat
+(setq evil-want-C-u-scroll t)
+
+; Enable evil mode
+(evil-mode 1)
+
+; Backup file in ~/.saves
+(setq backup-directory-alist `(("." . "~/.emacs.d/backup")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
 ;php mode for php file
 (eval-after-load 'php-mode
   '(require 'php-ext))
@@ -20,12 +34,6 @@
 ; Hide menue
 (menu-bar-mode -1)
 
-; Enable helm mode					
-(helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-
 ; Remove Welcome screen
 (setq inhibit-startup-message t)
 
@@ -40,10 +48,6 @@
 ;Yes or No alias
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-; Enable evil mode
-(evil-mode 1)
-
-;Projectile
 (projectile-global-mode)
 
 ; Show line number
