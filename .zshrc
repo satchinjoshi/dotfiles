@@ -30,19 +30,22 @@ alias pt="./vendor/bin/phpunit"
 alias vi="nvim"
 alias sip="$HOME/Dropbox/code/setproxy.sh"
 alias artisan="php artisan"
+alias tt="ctags -R --fields=+aimS --languages=php"
+alias csf="php-cs-fixer --verbose fix --config-file=.php_cs"
+alias emacs="emacs -nw"
 # tmux color fixes
 export TERM="xterm-256color"
+#export TERM=screen-256color-bce
 
 # Composer
 # export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
-source $HOME/.gvm/scripts/gvm
-# export GOPATH="$HOME/.go/pkg"
-# export PATH="$PATH:$GOPATH/bin/"
+export GOPATH="$HOME/.go/pkg"
+export PATH="$PATH:$GOPATH/bin/"
 
 #Selinium server alias
-alias sserve="java -jar $HOME/.local/bin/selenium-server-standalone-2.53.0.jar"
+alias sserve="java -jar $HOME/.local/bin/selenium-server-standalone-2.53.1.jar"
 
 #Get back to vim by ctrl-z
 fancy-ctrl-z () {
@@ -83,3 +86,8 @@ export NVM_DIR="$HOME/.nvm"
 
 ## Cask
 export PATH="$HOME/.cask/bin:$PATH"
+
+# Setting ag as the default source for fzf
+#export FZF_DEFAULT_COMMAND='ag -g ""'
+
+[ -f $HOME/Code/spark-installer ] && source "$HOME/Code/spark-installer/spark"
