@@ -3,7 +3,6 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="ys"
 
-
 plugins=(git composer httpie vi-mode emacs docker)
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
@@ -33,6 +32,9 @@ alias artisan="php artisan"
 alias tt="ctags -R --fields=+aimS --languages=php"
 alias csf="php-cs-fixer --verbose fix --config-file=.php_cs"
 alias emacs="emacs -nw"
+alias mpv="ssh root@pagevamp.com tail -f /var/log/httpd/pagevamp.com-access.log | logstalgia --sync"
+alias mapi="ssh root@api.pagevamp.com tail -f /var/log/nginx/ssl_api.pagevamp.com | logstalgia --sync"
+alias mapi="ssh root@build.pagevamp.com tail -f /var/log/nginx/ssl_api.pagevamp.com | logstalgia --sync"
 # tmux color fixes
 export TERM="xterm-256color"
 #export TERM=screen-256color-bce
@@ -43,9 +45,6 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 export GOPATH="$HOME/.go/pkg"
 export PATH="$PATH:$GOPATH/bin/"
-
-#Selinium server alias
-alias sserve="java -jar $HOME/.local/bin/selenium-server-standalone-2.53.1.jar"
 
 #Get back to vim by ctrl-z
 fancy-ctrl-z () {

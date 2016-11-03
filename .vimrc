@@ -1,12 +1,12 @@
 call plug#begin()
 
 " Version Control
+Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Languages/support
 "===================== elixir ===============================
 Plug 'elixir-lang/vim-elixir'
-Plug 'thinca/vim-ref'
 Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 "=============================================================
 Plug 'sheerun/vim-polyglot'
@@ -17,7 +17,6 @@ Plug 'evidens/vim-twig'
 Plug 'derekwyatt/vim-scala'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
-Plug 'shawncplus/phpcomplete.vim'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
 " Navigation
@@ -26,15 +25,12 @@ Plug 'rking/ag.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Note
-Plug 'jceb/vim-orgmode'
-Plug 'tpope/vim-speeddating'
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-Plug 'noah/vim256-color'
+
+Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
-Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
@@ -67,7 +63,7 @@ set hidden
 "Theme
 syntax enable
 set termguicolors
-colorscheme seoul256
+colorscheme dracula
 "colorscheme onedark
 set background=dark
 
