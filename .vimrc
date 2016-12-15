@@ -1,15 +1,55 @@
+"
+"                         ███████████████████████████
+"                         ███████▀▀▀░░░░░░░▀▀▀███████
+"                         ████▀░░░░░░░░░░░░░░░░░▀████
+"                         ███│░░░░░░░░░░░░░░░░░░░│███
+"                         ██▌│░░░░░░░░░░░░░░░░░░░│▐██
+"                         ██░└┐░░░░░░░░░░░░░░░░░┌┘░██
+"                         ██░░└┐░░░░░░░░░░░░░░░┌┘░░██
+"                         ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
+"                         ██▌░│██████▌░░░▐██████│░▐██
+"                         ███░│▐███▀▀░░▄░░▀▀███▌│░███
+"                         ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
+"                         ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
+"                         ████▄─┘██▌░░░░░░░▐██└─▄████
+"                         █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
+"                         ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
+"                         █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
+"                         ███████▄░░░░░░░░░░░▄███████
+"                         ██████████▄▄▄▄▄▄▄██████████
+"                         ███████████████████████████
+"
+"   You are about to experience a potent dosage of Vim. Watch your steps.
+"
+"                ╔══════════════════════════════════════════╗
+"                ║           ⎋ HERE BE VIMPIRES ⎋           ║
+"                ╚══════════════════════════════════════════╝
+
 call plug#begin()
 
-" Version Control
-Plug 'gregsexton/gitv'
+Plug 'beloglazov/vim-online-thesaurus', { 'on': ['Thesaurus', 'OnlineThesaurusCurrentWord'] }
+" version control
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 " Languages/support
-"===================== elixir ===============================
-Plug 'elixir-lang/vim-elixir'
-Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
-"=============================================================
 Plug 'sheerun/vim-polyglot'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
+endif
+Plug 'mhinz/vim-startify'
+Plug 'itchyny/calendar.vim'
+let g:calendar_google_calendar = 1
+
+Plug 'kshenoy/vim-signature'
+
+"===================== elixir && phoenix ===============================
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'c-brenn/phoenix.vim'
+Plug 'tpope/vim-projectionist' " required for some navigation features
+"=============================================================
+Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-rails'
@@ -20,26 +60,23 @@ Plug 'alvan/vim-php-manual'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
 " Navigation
-Plug 'skwp/greplace.vim'
+Plug 'brooth/far.vim'
 Plug 'rking/ag.vim'
-Plug 'tpope/vim-vinegar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
+"ColorScheme
+Plug 'whatyouhide/vim-gotham'
 Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
+
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
-Plug 'MattesGroeger/vim-bookmarks'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 
 Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'SirVer/ultisnips'
@@ -49,13 +86,16 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-dispatch'
 Plug 'neomake/neomake'
 
-"========= Tmux =======
-Plug 'christoomey/vim-tmux-navigator'
-
 call plug#end()
+
+set mouse=""
+
+set title
 
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>\<Space>"
+
+set encoding=utf-8
 
 " for vim-ctrlspace
 set hidden
@@ -63,19 +103,23 @@ set hidden
 "Theme
 syntax enable
 set termguicolors
-colorscheme dracula
-"colorscheme onedark
 set background=dark
+
+if $TERM == "xterm-256color"
+    set t_Co=256
+endif
 
 set number
 set relativenumber
-set backspace=indent,eol,start				"for making backspace behave like normal editor
+set backspace=indent,eol,start				"Allow backspace in insert mode.
 set smartcase
 set ignorecase
 set cursorline								"highlight current line
-set backupdir=~/.config/nvim/backup//	
+set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 set scrolloff=5
+
+set path+=**
 
 " folding settings
 set foldmethod=indent						" fold based on indent
@@ -83,26 +127,52 @@ set foldnestmax=10							" deepest fold is 10 levels
 set nofoldenable							" dont fold by default
 set foldlevel=1								" this is just what i use
 
-" Tabs n indent 
+" Tabs n indent
 set nowrap
 set autoindent								" on new lines, match indent of previous line
 set copyindent								" copy the previous indentation on autoindenting
 set cindent									" smart indenting for c-like code
 set expandtab								" Tabs are spaces, not tabs
-set smarttab        
+"set smarttab
 set tabstop=4								" tab size
 set shiftwidth=4
 set shiftround
 set softtabstop=4
 
-" search moving around 
+filetype plugin indent on
+
+autocmd Filetype html setlocal ts=4 sts=4 sw=4
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
+autocmd Filetype scala setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype php setlocal ts=4 sts=4 sw=4
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+autocmd FileType scss setlocal ts=2 sts=2 sw=2
+
+"Allow for mappings including Esc, while preserving zero timeout after pressing it manually.
+set complete-=i
+
+"Disable swap to prevent annoying messages.
+set noswapfile
+
+"Set window title by default.
+set title
+
+"Show the line and column number of the cursor position.
+set ruler
+
+"Show white space and tab characters
+set list
+"Set default whitespace characters when using :set list
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+
+" search moving around
 set incsearch								"highlight the search text object
 set hlsearch								"highlight search result
-map <leader>hh :set hlsearch!<cr> 
+map <leader>hh :set hlsearch!<cr>
 
-" Auto load file changes
-" changes are seen when changing buffer, live reload
-" not working
+"Reload unchanged files automatically.
 set autoread
 au CursorHold * checktime
 
@@ -126,7 +196,7 @@ let g:syntastic_always_populate_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
-let g:syntastic_javascript_checkers=['']
+"let g:syntastic_javascript_checkers = ['standard']
 "let g:syntastic_phpcs_disable = 1
 let g:syntastic_php_checkers = ['php']
 function! ToggleErrors()
@@ -210,10 +280,6 @@ endfunction
 autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
 autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
 
-"-------------------------- Deploy by Envoy
-command! Edeploy exec "Dispatch envoy run deploy"
-nnoremap edp :Edeploy<CR>
-
 "-------------------------- Laravel specific
 function! Artisan()
     let command = input('Enter artisan command: ')
@@ -242,18 +308,18 @@ command! L52CacheClear exec "Dispatch php artisan cache:clear"
 nnoremap <leader>lvc :L52ViewClear<CR>
 
 "----------------------------- run current file in console
-nnoremap <leader>rf :call RunFile()<CR> 
+nnoremap <leader>rf :call RunFile()<CR>
 func! RunFile()
     if &filetype == 'php'
         exec "!php %:p"
     elseif &filetype == 'go'
-        exec "Dispatch go run %:p"
+        exec "!go run %:p"
     elseif &filetype == 'sh'
-        exec "Dispatch .%:p"
+        exec "!bash %:p"
     elseif &filetype == 'elixir'
-        exec "Dispatch elixir %:p"
+        exec "!elixir %"
     elseif &filetype == 'javascript'
-        exec "Dispatch node %:p"
+        exec "!node %:p"
     endif
 endfunc
 
@@ -286,34 +352,41 @@ func! GenerateCtags()
 endfunc
 
 "--------------------------- Run phpunit
-nnoremap <leader>rt :call RunPHPunit()<CR>
-func! RunPHPunit()
-    exec "Dispatch ./vendor/bin/phpunit"
+nnoremap <leader>rt :call RunUnitTest()<CR>
+func! RunUnitTest()
+    if &filetype == 'php'
+        exec "Dispatch ./vendor/bin/phpunit"
+    endif
+    if &filetype == 'elixir'
+        exec "Dispatch mix test"
+    endif
 endfunc
+
+"-------------------------- CodeCeption
+nnoremap <leader>crf :call RunCodeception()<CR>
+func! RunCodeception()
+    execute "Dispatch ./vendor/bin/codecept run functional %:t"
+endfunc
+
+"-------------------------- Run Elixir Test
+nnoremap <leader>mt :call RunElixirTest()<CR>
+func! RunElixirTest()
+    exec "!mix test %:p"
+endfunc
+
 
 nmap <leader>pc :e composer.json<CR>
 
 " fix coding standar for current file to psr2
 nnoremap <leader>csf :call CSFixer()<CR>
 func! CSFixer()
-    if &filetype == 'Xphp'
-        exec "!phpcbf --standard=psr2 %:p"
-    endif
     if &filetype == 'php'
-        exec "!php-cs-fixer --verbose fix %:p --config-file=.php_cs"
+        exec "!vendor/bin/php-cs-fixer --verbose fix %:p --config=.php_cs"
     endif
 endfunc
 
 " format the entire file
 nnoremap <leader>fef :normal! gg=G``<CR>
-
-" upper/lower word
-nmap <leader>u mQviwU`Q
-nmap <leader>l mQviwu`Q
-
-" upper/lower first char of word
-nmap <leader>U mQgewvU`Q
-nmap <leader>L mQgewvu`Q
 
 " cd to the directory containing the file in the buffer
 nmap <silent> <leader>cd :lcd %:h<CR>
@@ -321,10 +394,6 @@ nmap <silent> <leader>cd :lcd %:h<CR>
 " Bubble single lines
 nmap <C-k> [e
 nmap <C-j> ]e
-
-" Bubble multiple lines
-vmap <C-k> [egv
-vmap <C-j> ]egv
 
 "Resize buffer
 nnoremap <A-h> :vertical resize -5<cr>
@@ -346,54 +415,26 @@ nnoremap <leader>q :bd<CR>
 
 " Refresh buffer
 nnoremap <leader>r :e!<CR>
-" Buffer destroy
-nnoremap <A-r> :BuffergatorToggle<CR>
+
 " set filetype for ractive template for pagevamp
 autocmd BufNewFile,BufRead *.js.twig   set syntax=javascript
 autocmd BufNewFile,BufRead *.twig   set syntax=twig
 "autocmd BufNewFile,BufRead *.blade.php   set filetype=html
 
-"------------ Greplace -------------------
-set grepprg=ag
-let g:grep_cmd_opts = '--line-numbers --noheading'
-
 "------------------------------------ netrw settings -----------------------------------
 let g:netrw_localrmdir="rm -r"                  "delete non empty directory
-" let g:netrw_liststyle=3                         "tree style for netrw 
+" let g:netrw_liststyle=3                         "tree style for netrw
 nnoremap - :Explore<CR>
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
-"---------- Lightline confg -----------------------
-set laststatus=0
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ }
+"use tabe for completion
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+set laststatus=0
 
 nnoremap <leader>o :only<CR>
-
-let g:tmux_navigator_no_mappings = 1
-
-nnoremap <silent> <A>h :TmuxNavigateLeft<cr>
-nnoremap <silent> <A>j :TmuxNavigateDown<cr>
-nnoremap <silent> <A>k :TmuxNavigateUp<cr>
-nnoremap <silent> <A>l :TmuxNavigateRight<cr>
-nnoremap <silent> <A>p :TmuxNavigatePrevious<cr>
 
 "-------------------------------------- UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -411,12 +452,33 @@ let g:phpcomplete_parse_docblock_comments = 1
 
 "----------------------------- NERDTREE CONFIG ------------------------
 let NERDTreeShowHidden=1 					"Show hidden file in NERDTree
-nmap ,m :NERDTreeToggle<CR> 
-nmap ,n :NERDTreeFind<CR> 
+nmap ,m :NERDTreeTabsToggle<CR>
+nmap ,n :NERDTreeTabsFind<CR>
 
 "----------------------------- Emmet Remap ------------------------
 let g:user_emmet_leader_key='<C-l>'
 
-"----------------------------- Theme bug fix ----------------------
-"autocmd BufReadPre,FileReadPre * :set colorscheme onedark
+"----------------------------- Theme bug fix / Always load the theme at last
+"--------------------------- Or the color schema seems off----------------------
+"colorscheme dracula
+"colorscheme onedark
+"colorscheme badwolf
+colorscheme gotham
 
+"Elixir/Phoenix Setting
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+let g:alchemist_iex_term_split = 'split'
+
+"Move cursor out for neovim terminal
+if has('nvim')
+:tnoremap <Esc> <C-\><C-n><C-w><C-w>
+endif
+
+"Show IEx
+nnoremap <leader>ex :IEx<CR>
+
+"Auto Remove White Space
+"autocmd BufWritePre * %s/\s\+$//e
+
+"Auto Format JS file as per "standard
+"autocmd bufwritepost *.js silent !standard --fix %

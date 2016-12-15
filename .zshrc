@@ -23,24 +23,11 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-alias pserve="xdg-open http://localhost:8080 >> /dev/null 2>&1 && php -S localhost:8080"
-alias lserve="xdg-open http://localhost:8000 >> /dev/null 2>&1 && php artisan serve"
-alias pt="./vendor/bin/phpunit"
-alias vi="nvim"
-alias sip="$HOME/Dropbox/code/setproxy.sh"
-alias artisan="php artisan"
-alias tt="ctags -R --fields=+aimS --languages=php"
-alias csf="php-cs-fixer --verbose fix --config-file=.php_cs"
-alias emacs="emacs -nw"
-alias mpv="ssh root@pagevamp.com tail -f /var/log/httpd/pagevamp.com-access.log | logstalgia --sync"
-alias mapi="ssh root@api.pagevamp.com tail -f /var/log/nginx/ssl_api.pagevamp.com | logstalgia --sync"
-alias mapi="ssh root@build.pagevamp.com tail -f /var/log/nginx/ssl_api.pagevamp.com | logstalgia --sync"
+[ -f ~/.alias ] && source ~/.alias
 # tmux color fixes
 export TERM="xterm-256color"
-#export TERM=screen-256color-bce
 
 # Composer
-# export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 export GOPATH="$HOME/.go/pkg"
@@ -90,3 +77,11 @@ export PATH="$HOME/.cask/bin:$PATH"
 #export FZF_DEFAULT_COMMAND='ag -g ""'
 
 [ -f $HOME/Code/spark-installer ] && source "$HOME/Code/spark-installer/spark"
+
+# Elixir version manager
+[[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
+
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export ANDROID_HOME=~/Android/Sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
