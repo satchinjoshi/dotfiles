@@ -30,7 +30,6 @@ call plug#begin()
 Plug 'beloglazov/vim-online-thesaurus', { 'on': ['Thesaurus', 'OnlineThesaurusCurrentWord'] }
 " version control
 Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
 Plug 'mhinz/vim-signify'
 " Languages/support
 Plug 'sheerun/vim-polyglot'
@@ -42,6 +41,7 @@ Plug 'itchyny/calendar.vim'
 let g:calendar_google_calendar = 1
 
 Plug 'kshenoy/vim-signature'
+Plug 'dhruvasagar/vim-table-mode'
 
 "===================== elixir && phoenix ===============================
 Plug 'elixir-lang/vim-elixir'
@@ -64,10 +64,15 @@ Plug 'brooth/far.vim'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+Plug 'miyakogi/seiya.vim'
+let g:seiya_auto_enable=1
+let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
+
 "ColorScheme
 Plug 'whatyouhide/vim-gotham'
 Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
+Plug 'freeo/vim-kalisi'
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -461,9 +466,10 @@ let g:user_emmet_leader_key='<C-l>'
 "----------------------------- Theme bug fix / Always load the theme at last
 "--------------------------- Or the color schema seems off----------------------
 "colorscheme dracula
-"colorscheme onedark
+colorscheme onedark
 "colorscheme badwolf
-colorscheme gotham
+"colorscheme gotham
+"colorscheme kalisi
 
 "Elixir/Phoenix Setting
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
@@ -478,7 +484,7 @@ endif
 nnoremap <leader>ex :IEx<CR>
 
 "Auto Remove White Space
-"autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
 
 "Auto Format JS file as per "standard
 "autocmd bufwritepost *.js silent !standard --fix %

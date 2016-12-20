@@ -11,7 +11,7 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -21,15 +21,17 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 [ -f ~/.alias ] && source ~/.alias
+
 # tmux color fixes
 export TERM="xterm-256color"
 
 # Composer
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
+# Go
 export GOPATH="$HOME/.go/pkg"
 export PATH="$PATH:$GOPATH/bin/"
 
