@@ -23,6 +23,9 @@ export LANG=en_US.UTF-8
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
+# Disable host key saving
+alias cssh='ssh -o StrictHostKeyChecking=no'
+
 [ -f ~/.alias ] && source ~/.alias
 
 # tmux color fixes

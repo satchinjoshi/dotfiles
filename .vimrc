@@ -32,11 +32,17 @@ Plug 'beloglazov/vim-online-thesaurus', { 'on': ['Thesaurus', 'OnlineThesaurusCu
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 " Languages/support
+Plug 'pearofducks/ansible-vim'
+let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+let g:ansible_attribute_highlight = "ob"
+let g:ansible_name_highlight = 'd'
+
 Plug 'sheerun/vim-polyglot'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
 endif
 Plug 'mhinz/vim-startify'
+
 Plug 'itchyny/calendar.vim'
 let g:calendar_google_calendar = 1
 
@@ -73,6 +79,7 @@ Plug 'whatyouhide/vim-gotham'
 Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
 Plug 'freeo/vim-kalisi'
+Plug 'altercation/vim-colors-solarized'
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -116,10 +123,10 @@ endif
 
 set number
 set relativenumber
-set backspace=indent,eol,start				"Allow backspace in insert mode.
+set backspace=indent,eol,start        "Allow backspace in insert mode.
 set smartcase
 set ignorecase
-set cursorline								"highlight current line
+set cursorline                "highlight current line
 set backupdir=~/.config/nvim/backup//
 set directory=~/.config/nvim/swap//
 set scrolloff=5
@@ -127,19 +134,19 @@ set scrolloff=5
 set path+=**
 
 " folding settings
-set foldmethod=indent						" fold based on indent
-set foldnestmax=10							" deepest fold is 10 levels
-set nofoldenable							" dont fold by default
-set foldlevel=1								" this is just what i use
+set foldmethod=indent            " fold based on indent
+set foldnestmax=10              " deepest fold is 10 levels
+set nofoldenable              " dont fold by default
+set foldlevel=1                " this is just what i use
 
 " Tabs n indent
 set nowrap
-set autoindent								" on new lines, match indent of previous line
-set copyindent								" copy the previous indentation on autoindenting
-set cindent									" smart indenting for c-like code
-set expandtab								" Tabs are spaces, not tabs
+set autoindent                " on new lines, match indent of previous line
+set copyindent                " copy the previous indentation on autoindenting
+set cindent                  " smart indenting for c-like code
+set expandtab                " Tabs are spaces, not tabs
 "set smarttab
-set tabstop=4								" tab size
+set tabstop=4                " tab size
 set shiftwidth=4
 set shiftround
 set softtabstop=4
@@ -173,8 +180,8 @@ set list
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
 " search moving around
-set incsearch								"highlight the search text object
-set hlsearch								"highlight search result
+set incsearch                "highlight the search text object
+set hlsearch                "highlight search result
 map <leader>hh :set hlsearch!<cr>
 
 "Reload unchanged files automatically.
@@ -456,7 +463,7 @@ let g:phpcomplete_search_tags_for_variables = 1
 let g:phpcomplete_parse_docblock_comments = 1
 
 "----------------------------- NERDTREE CONFIG ------------------------
-let NERDTreeShowHidden=1 					"Show hidden file in NERDTree
+let NERDTreeShowHidden=1           "Show hidden file in NERDTree
 nmap ,m :NERDTreeTabsToggle<CR>
 nmap ,n :NERDTreeTabsFind<CR>
 
@@ -465,11 +472,7 @@ let g:user_emmet_leader_key='<C-l>'
 
 "----------------------------- Theme bug fix / Always load the theme at last
 "--------------------------- Or the color schema seems off----------------------
-"colorscheme dracula
 colorscheme onedark
-"colorscheme badwolf
-"colorscheme gotham
-"colorscheme kalisi
 
 "Elixir/Phoenix Setting
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
@@ -484,7 +487,7 @@ endif
 nnoremap <leader>ex :IEx<CR>
 
 "Auto Remove White Space
-autocmd BufWritePre * %s/\s\+$//e
+"autocmd BufWritePre * %s/\s\+$//e
 
 "Auto Format JS file as per "standard
 "autocmd bufwritepost *.js silent !standard --fix %
