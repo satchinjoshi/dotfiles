@@ -57,7 +57,12 @@ Plug 'tpope/vim-projectionist' " required for some navigation features
 "=============================================================
 Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'tpope/vim-rails'
 Plug 'evidens/vim-twig'
 Plug 'derekwyatt/vim-scala'
@@ -75,11 +80,8 @@ let g:seiya_auto_enable=1
 let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 
 "ColorScheme
-Plug 'whatyouhide/vim-gotham'
-Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
-Plug 'freeo/vim-kalisi'
-Plug 'altercation/vim-colors-solarized'
+Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -158,6 +160,7 @@ autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
 autocmd Filetype scala setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 autocmd Filetype php setlocal ts=4 sts=4 sw=4
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType scss setlocal ts=2 sts=2 sw=2
@@ -325,7 +328,7 @@ func! RunFile()
     if &filetype == 'php'
         exec "!php %:p"
     elseif &filetype == 'go'
-        exec "!go run %:p"
+        <ESC>:!go run %:p
     elseif &filetype == 'sh'
         exec "!bash %:p"
     elseif &filetype == 'elixir'
@@ -403,9 +406,13 @@ nnoremap <leader>fef :normal! gg=G``<CR>
 " cd to the directory containing the file in the buffer
 nmap <silent> <leader>cd :lcd %:h<CR>
 
-" Bubble single lines
+" Bubble/Move single lines
 nmap <C-k> [e
 nmap <C-j> ]e
+
+"Bubble/Move selected lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 "Resize buffer
 nnoremap <A-h> :vertical resize -5<cr>
@@ -472,7 +479,7 @@ let g:user_emmet_leader_key='<C-l>'
 
 "----------------------------- Theme bug fix / Always load the theme at last
 "--------------------------- Or the color schema seems off----------------------
-colorscheme onedark
+colorscheme apprentice
 
 "Elixir/Phoenix Setting
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
@@ -491,3 +498,4 @@ nnoremap <leader>ex :IEx<CR>
 
 "Auto Format JS file as per "standard
 "autocmd bufwritepost *.js silent !standard --fix %
+"
