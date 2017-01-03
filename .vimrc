@@ -494,8 +494,8 @@ endif
 nnoremap <leader>ex :IEx<CR>
 
 "Auto Remove White Space
-"autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\s\+$//e
 
 "Auto Format JS file as per "standard
-"autocmd bufwritepost *.js silent !standard --fix %
-"
+autocmd bufwritepost *.js silent !standard --fix %
+
