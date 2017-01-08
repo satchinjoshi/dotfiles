@@ -156,6 +156,7 @@ set softtabstop=4
 filetype plugin indent on
 
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
+autocmd Filetype blade setlocal ts=4 sts=4 sw=4
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
 autocmd Filetype scala setlocal ts=2 sts=2 sw=2
@@ -495,6 +496,9 @@ nnoremap <leader>ex :IEx<CR>
 
 "Auto Remove White Space
 autocmd BufWritePre * %s/\s\+$//e
+
+"convert tabs to Space
+command! Tabstospace %s/\t/  /g
 
 "Auto Format JS file as per "standard
 autocmd bufwritepost *.js silent !standard --fix %
