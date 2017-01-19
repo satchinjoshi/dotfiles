@@ -55,6 +55,7 @@ Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
 "=============================================================
+Plug 'stephpy/vim-yaml'
 Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -159,6 +160,7 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4
 autocmd Filetype blade setlocal ts=4 sts=4 sw=4
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
+autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
 autocmd Filetype scala setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
@@ -362,10 +364,7 @@ func! RunFile()
 endfunc
 
 "--------------------------- Generate ctags
-nnoremap <leader>tt :call GenerateCtags()<CR>
-func! GenerateCtags()
-    execute "Dispatch ctags -R --fields=+aimS --languages=php"
-endfunc
+command! Ctags execute "Dispatch ctags -R --fields=+aimS --languages=php"
 
 "--------------------------- Run phpunit
 nnoremap <leader>rt :call RunUnitTest()<CR>
