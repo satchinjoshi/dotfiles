@@ -16,9 +16,9 @@
 "                         ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
 "                         █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
 "                         ███████▄░░░░░░░░░░░▄███████
-"                         ██████████▄▄▄▄▄▄▄██████████
 "                         ███████████████████████████
 "
+"                         ██████████▄▄▄▄▄▄▄██████████
 "   You are about to experience a potent dosage of Vim. Watch your steps.
 "
 "                ╔══════════════════════════════════════════╗
@@ -48,6 +48,8 @@ let g:calendar_google_calendar = 1
 
 Plug 'kshenoy/vim-signature'
 Plug 'dhruvasagar/vim-table-mode'
+
+Plug 'hashivim/vim-hashicorp-tools'
 
 "===================== elixir && phoenix ===============================
 Plug 'elixir-lang/vim-elixir'
@@ -80,12 +82,14 @@ Plug 'miyakogi/seiya.vim'
 let g:seiya_auto_enable=1
 let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
 
-"ColorScheme
+" ColorScheme
 Plug 'joshdick/onedark.vim'
 Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
+let g:NERDSpaceDelims = 1
+
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
 Plug 'terryma/vim-multiple-cursors'
