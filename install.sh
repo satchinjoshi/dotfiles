@@ -8,3 +8,4 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/backup
 ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
+ln -s ~/dotfiles/.zshrc ~/.zshrc
