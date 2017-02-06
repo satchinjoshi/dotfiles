@@ -23,9 +23,7 @@ export LANG=en_US.UTF-8
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# Disable host key saving
-alias cssh='ssh -o StrictHostKeyChecking=no'
-
+alias vi = "nvim"
 [ -f ~/.alias ] && source ~/.alias
 
 # tmux color fixes
@@ -66,27 +64,18 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 ### FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-## Play Framework
-export PATH=$PATH:/opt/activator
-
 eval $(thefuck --alias)
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-## Cask
-export PATH="$HOME/.cask/bin:$PATH"
-
-# Setting ag as the default source for fzf
-#export FZF_DEFAULT_COMMAND='ag -g ""'
-
-[ -f $HOME/Code/spark-installer ] && source "$HOME/Code/spark-installer/spark"
+if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi
 
 # Elixir version manager
 [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export ANDROID_HOME=~/Android/Sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+ GEM_HOME=$(ls -t -U | ruby -e 'puts Gem.user_dir')
+ GEM_PATH=$GEM_HOME
+ export PATH=$PATH:$GEM_HOME/bin
