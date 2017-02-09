@@ -23,8 +23,10 @@ export LANG=en_US.UTF-8
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-alias vi = "nvim"
+alias vi="nvim"
 [ -f ~/.alias ] && source ~/.alias
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # tmux color fixes
 export TERM="xterm-256color"

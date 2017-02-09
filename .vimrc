@@ -353,6 +353,12 @@ func! RunGulp()
     execute "Dispatch gulp"
 endfunc
 
+"--------------------------- capistrano
+nnoremap <leader>csd :call RunCapStagingDeploy() <CR>
+func! RunCapStagingDeploy()
+    execute "Dispatch cap staging deploy"
+endfunc
+
 "------------------------- run current php file in console
 nnoremap <leader>rf :call RunFile()<CR>
 func! RunFile()
@@ -504,5 +510,5 @@ autocmd BufWritePre * %s/\s\+$//e
 command! Tabstospace %s/\t/  /g
 
 "Auto Format JS file as per "standard
-autocmd bufwritepost *.js silent !standard --fix %
+" autocmd bufwritepost *.js silent !standard --fix %
 
