@@ -374,7 +374,7 @@ func! RunFile()
 endfunc
 
 "--------------------------- Generate ctags
-command! Ctags execute "Dispatch ctags -R --fields=+aimS --languages=php"
+command! Ctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
 
 "--------------------------- Run phpunit
 nnoremap <leader>rt :call RunUnitTest()<CR>
