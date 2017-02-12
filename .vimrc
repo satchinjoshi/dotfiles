@@ -77,6 +77,13 @@ Plug 'sumpygump/php-documentor-vim'
 Plug 'brooth/far.vim'
 Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+command! FZFMru call fzf#run({
+\  'source':  v:oldfiles,
+\  'sink':    'e',
+\  'options': '-m -x +s',
+\  'down':    '40%'})
+
+nnoremap <silent> <C-a> :FZFMru<CR>
 
 Plug 'miyakogi/seiya.vim'
 let g:seiya_auto_enable=1

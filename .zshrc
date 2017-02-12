@@ -26,7 +26,7 @@ export ARCHFLAGS="-arch x86_64"
 alias vi="nvim"
 [ -f ~/.alias ] && source ~/.alias
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # tmux color fixes
 export TERM="xterm-256color"
