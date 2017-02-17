@@ -57,6 +57,9 @@ Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
 "=============================================================
+Plug 'ekalinin/Dockerfile.vim'
+autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
+
 Plug 'stephpy/vim-yaml'
 Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
