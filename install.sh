@@ -18,3 +18,8 @@ ln -s ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
+
+touch ~/.gitignore_global
+echo "tags" >> ~/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global
+
