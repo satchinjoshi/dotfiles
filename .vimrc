@@ -27,9 +27,9 @@
 
 call plug#begin()
 
-Plug 'beloglazov/vim-online-thesaurus', { 'on': ['Thesaurus', 'OnlineThesaurusCurrentWord'] }
 " version control
 Plug 'tpope/vim-fugitive'
+
 Plug 'mhinz/vim-signify'
 " Languages/support
 Plug 'pearofducks/ansible-vim'
@@ -43,9 +43,6 @@ if has('nvim')
 endif
 Plug 'mhinz/vim-startify'
 
-Plug 'itchyny/calendar.vim'
-let g:calendar_google_calendar = 1
-
 Plug 'kshenoy/vim-signature'
 Plug 'dhruvasagar/vim-table-mode'
 
@@ -55,7 +52,8 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-projectionist' " required for some navigation features
+" Plug 'tpope/vim-projectionist' " required for some navigation features
+
 "=============================================================
 Plug 'ekalinin/Dockerfile.vim'
 autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
@@ -63,19 +61,20 @@ autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
 Plug 'stephpy/vim-yaml'
 Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
+
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+
 Plug 'tpope/vim-rails'
-Plug 'evidens/vim-twig'
-Plug 'derekwyatt/vim-scala'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
+
 " Navigation
 Plug 'brooth/far.vim'
 Plug 'rking/ag.vim'
@@ -85,8 +84,6 @@ command! FZFMru call fzf#run({
 \  'sink':    'e',
 \  'options': '-m -x +s',
 \  'down':    '40%'})
-
-nnoremap <silent> <C-a> :FZFMru<CR>
 
 Plug 'miyakogi/seiya.vim'
 let g:seiya_auto_enable=1
@@ -98,7 +95,7 @@ Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
-let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1                 "Add a space after comment
 
 Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-unimpaired'
@@ -521,4 +518,5 @@ command! Tabstospace %s/\t/  /g
 
 "Auto Format JS file as per "standard
 " autocmd bufwritepost *.js silent !standard --fix %
-
+"
+:nmap <leader>ll m`b~``

@@ -73,6 +73,11 @@ fi
 # Elixir version manager
 [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
 
- GEM_HOME=$(ls -t -U | ruby -e 'puts Gem.user_dir')
- GEM_PATH=$GEM_HOME
- export PATH=$PATH:$GEM_HOME/bin
+GEM_HOME=$(ls -t -U | ruby -e 'puts Gem.user_dir')
+GEM_PATH=$GEM_HOME
+export PATH=$PATH:$GEM_HOME/bin
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+    eval `ssh-agent -s`
+    ssh-add
+fi
