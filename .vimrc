@@ -58,7 +58,8 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
-" Plug 'tpope/vim-projectionist' " required for some navigation features
+Plug 'tpope/vim-projectionist' " required for some navigation features
+Plug 'powerman/vim-plugin-AnsiEsc'
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 let g:alchemist_iex_term_split = 'split'
 let g:alchemist_tag_map = '<C-]>'
