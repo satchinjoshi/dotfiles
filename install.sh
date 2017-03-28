@@ -1,9 +1,11 @@
 if output=$(which pacman); then
     yes | sudo pacman -S neovim
+    yes | sudo pacman -S python2-neovim python-neovim
 elif output=$(which apt-get); then
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt-get update -y
     sudo apt-get install neovim -y
+    sudo apt-get install python-dev python-pip python3-dev python3-pip -y
 else
     printf 'update the code for os\n'
     exit 0
