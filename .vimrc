@@ -38,12 +38,11 @@ nnoremap gl :Glog -- %<CR>
 
 Plug 'mhinz/vim-signify'
 " Languages/support
-Plug 'pearofducks/ansible-vim'
+Plug 'sheerun/vim-polyglot'
 let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
 
-Plug 'sheerun/vim-polyglot'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
 endif
@@ -55,7 +54,6 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'hashivim/vim-hashicorp-tools'
 
 "===================== elixir && phoenix ===============================
-Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
@@ -63,7 +61,7 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 let g:alchemist_iex_term_split = 'split'
 let g:alchemist_tag_map = '<C-]>'
-
+nnoremap <leader>ex :IEx<CR>
 
 "=============================================================
 Plug 'ekalinin/Dockerfile.vim'
@@ -185,8 +183,6 @@ set title
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>\<Space>"
 
-set encoding=utf-8
-
 " for vim-ctrlspace
 set hidden
 
@@ -205,25 +201,34 @@ set backspace=indent,eol,start        "Allow backspace in insert mode.
 set smartcase
 set ignorecase
 set cursorline                "highlight current line
-set backupdir=~/.config/nvim/backup//
-set directory=~/.config/nvim/swap//
-set scrolloff=5
 
+" ===== Scrolling ===============
+set scrolloff=8                 " Scroll when 8 lines away from margins
+set sidescrolloff=15            " How near the cursor must come to the border
+set sidescroll=3
+
+" ===== Handling Files ==========
+set encoding=utf-8              " UTF-8 Encoding to avoid server issues
+set noswapfile                  " Avoid using Swap Files. Text is in memory
+set nobackup                    " Prevent Backup files
+set nowb                        " Prevent Backup files
+set history=1000                " Amount of :cmdline history
 set path+=**
 
-" folding settings
+" ======= folding settings =========
 set foldmethod=indent            " fold based on indent
 set foldnestmax=10              " deepest fold is 10 levels
 set nofoldenable              " dont fold by default
 set foldlevel=1                " this is just what i use
 
-" Tabs n indent
+" ========= Tabs n indent ==============
 set nowrap
 set autoindent                " on new lines, match indent of previous line
 set copyindent                " copy the previous indentation on autoindenting
 set cindent                  " smart indenting for c-like code
 set expandtab                " Tabs are spaces, not tabs
-"set smarttab
+
+" ======== set smarttab ================
 set tabstop=4                " tab size
 set shiftwidth=4
 set shiftround
@@ -419,9 +424,6 @@ colorscheme onedark
 if has('nvim')
 :tnoremap <Esc> <C-\><C-n><C-w><C-w>
 endif
-
-"Show IEx
-nnoremap <leader>ex :IEx<CR>
 
 "Auto Remove White Space
 autocmd BufWritePre * %s/\s\+$//e
