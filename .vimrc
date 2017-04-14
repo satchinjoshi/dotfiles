@@ -26,7 +26,7 @@
 "                ╚══════════════════════════════════════════╝
 
 call plug#begin()
-
+Plug 'radenling/vim-dispatch-neovim'
 " version control
 "----------------------------- Fugitive Config ------------------------
 Plug 'tpope/vim-fugitive'
@@ -54,6 +54,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'hashivim/vim-hashicorp-tools'
 
 "===================== elixir && phoenix ===============================
+Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
@@ -334,6 +335,8 @@ func! RunFile()
         exec "!php %:p"
     elseif &filetype == 'go'
         exec "!go run %:p"
+    elseif &filetype == 'ruby'
+        exec "!ruby %:p"
     elseif &filetype == 'sh'
         exec "!bash %:p"
     elseif &filetype == 'elixir'
@@ -346,10 +349,10 @@ endfunc
 nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
     if &filetype == 'php'
-        exec "Dispatch ./vendor/bin/phpunit"
+        exec "Start ./vendor/bin/phpunit --filter %:t:r %"
     endif
     if &filetype == 'elixir'
-        exec "Dispatch mix test"
+        exec "Start mix test"
     endif
 endfunc
 
