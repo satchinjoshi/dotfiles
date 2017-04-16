@@ -1,43 +1,7 @@
-"
-"                         ███████████████████████████
-"                         ███████▀▀▀░░░░░░░▀▀▀███████
-"                         ████▀░░░░░░░░░░░░░░░░░▀████
-"                         ███│░░░░░░░░░░░░░░░░░░░│███
-"                         ██▌│░░░░░░░░░░░░░░░░░░░│▐██
-"                         ██░└┐░░░░░░░░░░░░░░░░░┌┘░██
-"                         ██░░└┐░░░░░░░░░░░░░░░┌┘░░██
-"                         ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
-"                         ██▌░│██████▌░░░▐██████│░▐██
-"                         ███░│▐███▀▀░░▄░░▀▀███▌│░███
-"                         ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
-"                         ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
-"                         ████▄─┘██▌░░░░░░░▐██└─▄████
-"                         █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
-"                         ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
-"                         █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
-"                         ███████▄░░░░░░░░░░░▄███████
-"                         ███████████████████████████
-"
-"                         ██████████▄▄▄▄▄▄▄██████████
-"   You are about to experience a potent dosage of Vim. Watch your steps.
-"
-"                ╔══════════════════════════════════════════╗
-"                ║           ⎋ HERE BE VIMPIRES ⎋           ║
-"                ╚══════════════════════════════════════════╝
-
 call plug#begin()
-Plug 'radenling/vim-dispatch-neovim'
-" version control
-"----------------------------- Fugitive Config ------------------------
-Plug 'tpope/vim-fugitive'
-nnoremap gs :Gstatus <CR>
-nnoremap gd :Gdiff <CR>
-nnoremap gc :Gcommit <CR>
-nnoremap gb :Gblame <CR>
-nnoremap gl :Glog -- %<CR>
 
+Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-" Languages/support
 Plug 'sheerun/vim-polyglot'
 let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ob"
@@ -45,6 +9,7 @@ let g:ansible_name_highlight = 'd'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
+    let g:deoplete#enable_at_startup = 1
 endif
 Plug 'mhinz/vim-startify'
 
@@ -53,7 +18,7 @@ Plug 'dhruvasagar/vim-table-mode'
 
 Plug 'hashivim/vim-hashicorp-tools'
 
-"===================== elixir && phoenix ===============================
+" ======== elixir && phoenix ============
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
@@ -64,7 +29,6 @@ let g:alchemist_iex_term_split = 'split'
 let g:alchemist_tag_map = '<C-]>'
 nnoremap <leader>ex :IEx<CR>
 
-"=============================================================
 Plug 'ekalinin/Dockerfile.vim'
 autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
 
@@ -73,24 +37,21 @@ Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
 
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
 Plug 'tpope/vim-rails'
 Plug 'jwalton512/vim-blade'
+
 Plug 'alvan/vim-php-manual'
 Plug 'arnaud-lb/vim-php-namespace'
-"------------------------- PHP Namespaces Import
+" ------ PHP Namespaces Import -------------
 function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
 endfunction
 autocmd FileType php inoremap <Leader>pu <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>pu :call PhpInsertUse()<CR>
-"--------------------------- Expand Namespace
+" ---------- Expand Namespace ---------------
 function! IPhpExpandClass()
     call PhpExpandClass()
     call feedkeys('a', 'n')
@@ -103,40 +64,28 @@ au BufRead,BufNewFile *.php inoremap <buffer> <leader>pd :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php nnoremap <buffer> <leader>pd :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <leader>pd :call PhpDocRange()<CR>
 
-
-" Navigation
-Plug 'brooth/far.vim'
 Plug 'rking/ag.vim'
+" =============== FZF config =================
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-command! FZFMru call fzf#run({
-\  'source':  v:oldfiles,
-\  'sink':    'e',
-\  'options': '-m -x +s',
-\  'down':    '40%'})
-
-Plug 'miyakogi/seiya.vim'
-let g:seiya_auto_enable=1
-let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
+nnoremap <silent> <C-p> :FZF<CR>
+set rtp+=~/.fzf " ZFZ Fuzzy finder in go
+let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
 
 " ColorScheme
 Plug 'joshdick/onedark.vim'
-Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
 
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
-"---------------------------- Syntastic config -------------------------
+" ======== Syntastic config ======
 Plug 'scrooloose/syntastic'
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_always_populate_loc_list = 2
-" let g:syntastic_auto_loc_list = 1                         "error list
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_html_checkers=['']
-"let g:syntastic_javascript_checkers = ['standard']
-"let g:syntastic_phpcs_disable = 1
 let g:syntastic_php_checkers = ['php']
 function! ToggleErrors()
     if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
@@ -148,54 +97,39 @@ function! ToggleErrors()
 endfunction
 nnoremap <silent> <A-e> :<C-u>call ToggleErrors()<CR>
 
-Plug 'tpope/vim-unimpaired'
 Plug 'terryma/vim-multiple-cursors'
 
-"----------------------------- NERDTREE CONFIG ------------------------
-Plug 'scrooloose/nerdtree'
-let NERDTreeShowHidden=1           "Show hidden file in NERDTree
-nmap ,m :NERDTreeTabsToggle<CR>
-nmap ,n :NERDTreeTabsFind<CR>
-
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-"-------------------------------------- UltiSnips
+" ======== UltiSnips ==============
 Plug 'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 Plug 'honza/vim-snippets'
 
-"========Async======
+" ======== Async =============
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
 Plug 'neomake/neomake'
 
 call plug#end()
 
-set mouse=""
-
-set title
-
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>\<Space>"
-
-" for vim-ctrlspace
-set hidden
-
-"Theme
-syntax enable
-set termguicolors
-set background=dark
 
 if $TERM == "xterm-256color"
     set t_Co=256
 endif
 
+set mouse=""
+" for vim-ctrlspace
+set hidden
+"Theme
+syntax enable
+set termguicolors
+set background=dark
 set number
 set relativenumber
 set backspace=indent,eol,start        "Allow backspace in insert mode.
@@ -203,7 +137,7 @@ set smartcase
 set ignorecase
 set cursorline                "highlight current line
 
-" ===== Scrolling ===============
+" ======== Scrolling =============
 set scrolloff=8                 " Scroll when 8 lines away from margins
 set sidescrolloff=15            " How near the cursor must come to the border
 set sidescroll=3
@@ -251,16 +185,10 @@ autocmd FileType scss setlocal ts=2 sts=2 sw=2
 
 "Allow for mappings including Esc, while preserving zero timeout after pressing it manually.
 set complete-=i
-
-"Disable swap to prevent annoying messages.
-set noswapfile
-
 "Set window title by default.
 set title
-
 "Show the line and column number of the cursor position.
 set ruler
-
 "Show white space and tab characters
 set list
 "Set default whitespace characters when using :set list
@@ -275,60 +203,22 @@ map <leader>hh :set hlsearch!<cr>
 set autoread
 au CursorHold * checktime
 
-"---------------- autoreload rc file on save
+" ======= autoreload rc file on save ========
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
-"------------------------- FZF config ----------------------------------
-" Fuzzy search on CTRL P
-nnoremap <silent> <C-p> :FZF<CR>
-set rtp+=~/.fzf " ZFZ Fuzzy finder in go
-let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
-
-
-" push to current branch
-function! PullFromCurrentBranch()
-  let branch = fugitive#statusline()
-  let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
-  execute "Dispatch git pull origin" . branch
-endfunction
-
-" push to current branch
-function! PushToCurrentBranch()
-  let branch = fugitive#statusline()
-  let branch = substitute(branch, '\c\v\[?GIT\(([a-z0-9\-_\./:]+)\)\]?', $BRANCH.' \1', 'g')
-  execute "Dispatch git push origin" . branch
-endfunction
-
-" Map gwp keys to call the function
-nnoremap gwp :call PushToCurrentBranch()<CR>
-nnoremap grp :call PullFromCurrentBranch()<CR>
-
-"-------------------- MAP the previous/next error -------------------------
-nnoremap <silent> ,en :lnext<CR>
-nnoremap <silent> ,ep :lprev<CR>
-
-"------------------- Edit & load .vimrc file -----------------------------
+" ========= Edit & load .vimrc file =======
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
 
-"------------------- Edit & load .zshrc file -----------------------------
-noremap <leader>ez :tabe ~/.zshrc<cr>
-
-"------------------- Edit & load .zshrc file -----------------------------
-nnoremap <leader>et :tabe ~/.tmux.conf<cr>
-
-" Clean Swap files
-command! Cleanswapdir exec "Dispatch rm -rf ~/.config/nvim/swap/"
-
 command! Google exec "!xdg-open http://www.google.com"
 
-"--------------------------- Generate ctags
+" ====== Generate ctags ==========
 command! Ctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
 
-"----------------------------- run current file in console
+" ======= run current file in console =======
 nnoremap <leader>rf :call RunFile()<CR>
 func! RunFile()
     if &filetype == 'php'
@@ -345,26 +235,15 @@ func! RunFile()
         exec "!node %:p"
     endif
 endfunc
-"--------------------------- Run unit test
+" ====== Run unit test ============
 nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
     if &filetype == 'php'
         exec "Start ./vendor/bin/phpunit --filter %:t:r %"
-    endif
-    if &filetype == 'elixir'
+    elseif &filetype == 'elixir'
         exec "Start mix test"
     endif
 endfunc
-
-" format the entire file
-nnoremap <leader>fef :normal! gg=G``<CR>
-
-" cd to the directory containing the file in the buffer
-nmap <silent> <leader>cd :lcd %:h<CR>
-
-" Bubble/Move single lines
-nmap <C-k> [e
-nmap <C-j> ]e
 
 "Bubble/Move selected lines
 vnoremap J :m '>+1<CR>gv=gv
@@ -381,43 +260,17 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
-"refresh buffer
-nnoremap <C-r> :e!<CR>
-
-" Destroy Buffer
-map <A-q> :bd<CR>
-nnoremap <leader>q :bd<CR>
-
-" Refresh buffer
-nnoremap <leader>r :e!<CR>
-
 " set filetype for ractive template for pagevamp
 autocmd BufNewFile,BufRead *.js.twig   set syntax=javascript
 autocmd BufNewFile,BufRead *.twig   set syntax=twig
 "autocmd BufNewFile,BufRead *.blade.php   set filetype=html
 
-"------------------------------------ netrw settings -----------------------------------
+" --------- netrw settings -------------
 let g:netrw_localrmdir="rm -r"                  "delete non empty directory
 " let g:netrw_liststyle=3                         "tree style for netrw
 nnoremap - :Explore<CR>
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-
-"use tabe for completion
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
 set laststatus=0
-
-nnoremap <leader>o :only<CR>
-
-let g:phpcomplete_relax_static_constraint = 1
-let g:phpcomplete_complete_for_unknown_classes = 1
-let g:phpcomplete_search_tags_for_variables = 1
-let g:phpcomplete_parse_docblock_comments = 1
-
-"----------------------------- Emmet Remap ------------------------
-let g:user_emmet_leader_key='<C-l>'
 
 "----------------------------- Theme bug fix / Always load the theme at last
 "--------------------------- Or the color schema seems off----------------------
