@@ -19,6 +19,7 @@ export EDITOR='nvim'
 export ARCHFLAGS="-arch x86_64"
 
 alias vi="nvim"
+alias gstart="git init && git add --all && git commit -m \"initial commit\""
 [ -f ~/.alias ] && source ~/.alias
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -81,4 +82,7 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
     ssh-add
 fi
+
 export PATH=$HOME/bin:$PATH
+
+[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc

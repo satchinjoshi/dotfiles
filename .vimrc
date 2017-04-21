@@ -78,6 +78,8 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
+Plug 'editorconfig/editorconfig-vim'
+
 " ======== Syntastic config ======
 Plug 'scrooloose/syntastic'
 let g:syntastic_error_symbol='✗'
@@ -174,6 +176,7 @@ filetype plugin indent on
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 autocmd Filetype blade setlocal ts=4 sts=4 sw=4
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
 autocmd Filetype scala setlocal ts=2 sts=2 sw=2
