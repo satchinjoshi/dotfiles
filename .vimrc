@@ -219,7 +219,8 @@ nnoremap <leader>so :source $MYVIMRC<cr>
 command! Google exec "!xdg-open http://www.google.com"
 
 " ====== Generate ctags ==========
-command! Ctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
+command! Phpctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
+command! Rubyctags execute "Dispatch ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
 
 " ======= run current file in console =======
 nnoremap <leader>rf :call RunFile()<CR>
