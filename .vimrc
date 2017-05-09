@@ -1,11 +1,16 @@
 call plug#begin()
 
+Plug 'chiedo/vim-case-convert'
+
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'sheerun/vim-polyglot'
 let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
+
+Plug 'tyru/current-func-info.vim'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
@@ -21,8 +26,8 @@ Plug 'hashivim/vim-hashicorp-tools'
 " ======== elixir && phoenix ============
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-projectionist' " required for some navigation features
+" Plug 'c-brenn/phoenix.vim'
+" Plug 'tpope/vim-projectionist' " required for some navigation features
 Plug 'powerman/vim-plugin-AnsiEsc'
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 let g:alchemist_iex_term_split = 'split'
@@ -103,13 +108,13 @@ Plug 'terryma/vim-multiple-cursors'
 
 " ======== UltiSnips ==============
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-Plug 'honza/vim-snippets'
 
 " ======== Async =============
 Plug 'radenling/vim-dispatch-neovim'
@@ -133,7 +138,7 @@ syntax enable
 set termguicolors
 set background=dark
 set number
-set relativenumber
+" set relativenumber
 set backspace=indent,eol,start        "Allow backspace in insert mode.
 set smartcase
 set ignorecase
@@ -234,7 +239,7 @@ func! RunFile()
     elseif &filetype == 'sh'
         exec "!bash %:p"
     elseif &filetype == 'elixir'
-        exec "!elixir %:p"
+        exec "!elixir -r %:p"
     elseif &filetype == 'javascript'
         exec "!node %:p"
     endif
@@ -243,11 +248,17 @@ endfunc
 nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
     if &filetype == 'php'
-        exec "Start ./vendor/bin/phpunit --filter %:t:r %"
+        if cfi#format('%s', '') == ''
+            exec "Start ./vendor/bin/phpunit --filter %:t:r %"
+        else
+            exec "Start ./vendor/bin/phpunit --filter ".cfi#format('%s', '')." %"
+        endif
     elseif &filetype == 'elixir'
         exec "Start mix test"
     endif
 endfunc
+
+nnoremap <leader>rr :echo cfi#format("%s", "")<CR>
 
 "Bubble/Move selected lines
 vnoremap J :m '>+1<CR>gv=gv
