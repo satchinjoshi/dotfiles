@@ -21,6 +21,8 @@ ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 
+ln -s ~/dotfiles/snippets ~/.config/nvim/UltiSnips
+
 touch ~/.gitignore_global
 echo "tags" >> ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global

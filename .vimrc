@@ -37,7 +37,6 @@ nnoremap <leader>ex :IEx<CR>
 Plug 'ekalinin/Dockerfile.vim'
 autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
 
-Plug 'stephpy/vim-yaml'
 Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
 
@@ -85,24 +84,12 @@ let g:NERDSpaceDelims = 1                 "Add a space after comment
 
 Plug 'editorconfig/editorconfig-vim'
 
-" ======== Syntastic config ======
-Plug 'scrooloose/syntastic'
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_always_populate_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_html_checkers=['']
-let g:syntastic_php_checkers = ['php']
-function! ToggleErrors()
-    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
-        " No location/quickfix list shown, open syntastic error location panel
-        Errors
-    else
-        lclose
-    endif
-endfunction
-nnoremap <silent> <A-e> :<C-u>call ToggleErrors()<CR>
+" ========== Neomake =============
+Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+let g:neomake_verbose=3
+let g:neomake_place_signs = 1
+" let g:neomake_open_list = 2
+let g:neomake_php_phpcs_args_standard='PSR2'
 
 Plug 'terryma/vim-multiple-cursors'
 
@@ -119,7 +106,8 @@ let g:UltiSnipsEditSplit="vertical"
 " ======== Async =============
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
-Plug 'neomake/neomake'
+
+Plug 'tpope/vim-sensible'
 
 call plug#end()
 
@@ -207,7 +195,7 @@ set incsearch                "highlight the search text object
 set hlsearch                "highlight search result
 map <leader>hh :set hlsearch!<cr>
 
-"Reload unchanged files automatically.
+" Reload unchanged files automatically.
 set autoread
 au CursorHold * checktime
 
@@ -220,8 +208,6 @@ augroup END " }
 " ========= Edit & load .vimrc file =======
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
-
-command! Google exec "!xdg-open http://www.google.com"
 
 " ====== Generate ctags ==========
 command! Phpctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
@@ -286,6 +272,45 @@ let g:netrw_localrmdir="rm -r"                  "delete non empty directory
 nnoremap - :Explore<CR>
 
 set laststatus=0
+
+" Use gruvbox's termcolors
+"
+" @see https://github.com/ianks/gruvbox/blob/c7b13d9872af9fe1f5588d6ec56759489b0d7864/colors/gruvbox.vim#L137-L169
+" @see https://github.com/morhetz/gruvbox/pull/93/files
+function! s:SetTerminalColors() abort
+  " dark0 + gray
+  let g:terminal_color_0 = '#282828'
+  let g:terminal_color_8 = '#928374'
+
+  " neurtral_red + bright_red
+  let g:terminal_color_1 = '#cc241d'
+  let g:terminal_color_9 = '#fb4934'
+
+  " neutral_green + bright_green
+  let g:terminal_color_2 = '#98971a'
+  let g:terminal_color_10 = '#b8bb26'
+
+  " neutral_yellow + bright_yellow
+  let g:terminal_color_3 = '#d79921'
+  let g:terminal_color_11 = '#fabd2f'
+
+  " neutral_blue + bright_blue
+  let g:terminal_color_4 = '#458588'
+  let g:terminal_color_12 = '#83a598'
+
+  " neutral_purple + bright_purple
+  let g:terminal_color_5 = '#b16286'
+  let g:terminal_color_13 = '#d3869b'
+
+  " neutral_aqua + faded_aqua
+  let g:terminal_color_6 = '#689d6a'
+  let g:terminal_color_14 = '#8ec07c'
+
+  " light4 + light1
+  let g:terminal_color_7 = '#a89984'
+  let g:terminal_color_15 = '#ebdbb2'
+endfunction
+call s:SetTerminalColors()
 
 "----------------------------- Theme bug fix / Always load the theme at last
 "--------------------------- Or the color schema seems off----------------------
