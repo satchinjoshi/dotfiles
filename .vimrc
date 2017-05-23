@@ -1,3 +1,6 @@
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
 call plug#begin()
 
 Plug 'chiedo/vim-case-convert'
@@ -5,7 +8,7 @@ Plug 'chiedo/vim-case-convert'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'sheerun/vim-polyglot'
+
 let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ob"
 let g:ansible_name_highlight = 'd'
@@ -43,7 +46,11 @@ Plug 'posva/vim-vue'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 
+Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+
+Plug 'vimwiki/vimwiki'
+
 Plug 'jwalton512/vim-blade'
 
 Plug 'alvan/vim-php-manual'
