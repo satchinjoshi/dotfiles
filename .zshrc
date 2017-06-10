@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="ys"
+ZSH_THEME="xxf"
 
 plugins=(git composer httpie emacs docker)
 
@@ -20,6 +20,7 @@ export ARCHFLAGS="-arch x86_64"
 
 alias vi="nvim"
 alias gstart="git init && git add --all && git commit -m \"initial commit\""
+alias open="chromium --app"
 [ -f ~/.alias ] && source ~/.alias
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -72,7 +73,7 @@ if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 # Elixir version manager
-[[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
+# [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
 
 GEM_HOME=$(ls -t -U | ruby -e 'puts Gem.user_dir')
 GEM_PATH=$GEM_HOME
@@ -85,4 +86,5 @@ fi
 
 export PATH=$HOME/bin:$PATH
 
-[[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+export PATH=$PATH:~/Android/Sdk/platform-tools
+

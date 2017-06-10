@@ -15,6 +15,11 @@ let g:ansible_name_highlight = 'd'
 
 Plug 'tyru/current-func-info.vim'
 
+Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+let NERDTreeShowHidden=1           "Show hidden file in NERDTree
+nmap ,m :NERDTreeToggle<CR>
+nmap ,n :NERDTreeFind<CR>
+
 if has('nvim')
     Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
     let g:deoplete#enable_at_startup = 1
@@ -29,8 +34,8 @@ Plug 'hashivim/vim-hashicorp-tools'
 " ======== elixir && phoenix ============
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
-" Plug 'c-brenn/phoenix.vim'
-" Plug 'tpope/vim-projectionist' " required for some navigation features
+Plug 'c-brenn/phoenix.vim'
+Plug 'tpope/vim-projectionist' " required for some navigation features
 Plug 'powerman/vim-plugin-AnsiEsc'
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 let g:alchemist_iex_term_split = 'split'
@@ -131,7 +136,7 @@ set hidden
 "Theme
 syntax enable
 set termguicolors
-set background=dark
+set background=light
 set number
 " set relativenumber
 set backspace=indent,eol,start        "Allow backspace in insert mode.
@@ -247,7 +252,7 @@ func! RunTest()
             exec "Start ./vendor/bin/phpunit --filter ".cfi#format('%s', '')." %"
         endif
     elseif &filetype == 'elixir'
-        exec "Start mix test"
+        exec "Start mix test %:p"
     endif
 endfunc
 
