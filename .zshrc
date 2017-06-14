@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="xxf"
+ZSH_THEME="ys"
 
 plugins=(git composer httpie emacs docker)
 
@@ -23,7 +23,7 @@ alias gstart="git init && git add --all && git commit -m \"initial commit\""
 alias open="chromium --app"
 [ -f ~/.alias ] && source ~/.alias
 
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+#export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # tmux color fixes
 export TERM="xterm-256color"
@@ -68,9 +68,9 @@ eval $(thefuck --alias)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
+# if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
+    # source /etc/profile.d/vte.sh
+# fi
 
 # Elixir version manager
 # [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
@@ -87,4 +87,9 @@ fi
 export PATH=$HOME/bin:$PATH
 
 export PATH=$PATH:~/Android/Sdk/platform-tools
+
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
