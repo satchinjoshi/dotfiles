@@ -6,6 +6,8 @@ elif output=$(which apt-get); then
     sudo apt-get update -y
     sudo apt-get install neovim -y
     sudo apt-get install python-dev python-pip python3-dev python3-pip -y
+elif output=$(which brew); then
+    brew install --HEAD neovim
 else
     printf 'update the code for os\n'
     exit 0
