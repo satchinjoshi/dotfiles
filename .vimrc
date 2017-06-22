@@ -1,127 +1,64 @@
-let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/bin/python3'
-
 call plug#begin()
 
 Plug 'chiedo/vim-case-convert'
-
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-
-let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-let g:ansible_attribute_highlight = "ob"
-let g:ansible_name_highlight = 'd'
-
 Plug 'tyru/current-func-info.vim'
-
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-let NERDTreeShowHidden=1           "Show hidden file in NERDTree
-nmap ,m :NERDTreeToggle<CR>
-nmap ,n :NERDTreeFind<CR>
-
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
-    let g:deoplete#enable_at_startup = 1
-endif
+Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
 Plug 'mhinz/vim-startify'
-
 Plug 'kshenoy/vim-signature'
 Plug 'dhruvasagar/vim-table-mode'
-
 Plug 'hashivim/vim-hashicorp-tools'
-
-" ======== elixir && phoenix ============
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
 Plug 'powerman/vim-plugin-AnsiEsc'
-let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
-let g:alchemist_iex_term_split = 'split'
-let g:alchemist_tag_map = '<C-]>'
-nnoremap <leader>ex :IEx<CR>
-
 Plug 'ekalinin/Dockerfile.vim'
-autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
-
 Plug 'metakirby5/codi.vim'
 Plug 'posva/vim-vue'
-
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
-
 Plug 'vimwiki/vimwiki'
-
 Plug 'jwalton512/vim-blade'
-
 Plug 'alvan/vim-php-manual'
 Plug 'arnaud-lb/vim-php-namespace'
-" ------ PHP Namespaces Import -------------
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>pu <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>pu :call PhpInsertUse()<CR>
-" ---------- Expand Namespace ---------------
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
-autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
-
 Plug 'sumpygump/php-documentor-vim'
-au BufRead,BufNewFile *.php inoremap <buffer> <leader>pd :call PhpDoc()<CR>
-au BufRead,BufNewFile *.php nnoremap <buffer> <leader>pd :call PhpDoc()<CR>
-au BufRead,BufNewFile *.php vnoremap <buffer> <leader>pd :call PhpDocRange()<CR>
-
 Plug 'rking/ag.vim'
-" =============== FZF config =================
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-nnoremap <silent> <C-p> :FZF<CR>
-set rtp+=~/.fzf " ZFZ Fuzzy finder in go
-let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
-
-" ColorScheme
 Plug 'joshdick/onedark.vim'
-
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'radenling/vim-dispatch-neovim'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-sensible'
+
+call plug#end()
+
+" Add space after comment
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
-Plug 'editorconfig/editorconfig-vim'
-
 " ========== Neomake =============
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 let g:neomake_verbose=3
 let g:neomake_place_signs = 1
 " let g:neomake_open_list = 2
 let g:neomake_php_phpcs_args_standard='PSR2'
 
-Plug 'terryma/vim-multiple-cursors'
-
 " ======== UltiSnips ==============
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-
-" ======== Async =============
-Plug 'radenling/vim-dispatch-neovim'
-Plug 'tpope/vim-dispatch'
-
-Plug 'tpope/vim-sensible'
-
-call plug#end()
 
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>\<Space>"
@@ -191,6 +128,7 @@ autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 autocmd Filetype php setlocal ts=4 sts=4 sw=4
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType scss setlocal ts=2 sts=2 sw=2
+autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
 
 "Allow for mappings including Esc, while preserving zero timeout after pressing it manually.
 set complete-=i
@@ -203,12 +141,35 @@ set list
 "Set default whitespace characters when using :set list
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
-" search moving around
+" -------------- search moving around -----------------
 set incsearch                "highlight the search text object
 set hlsearch                "highlight search result
 map <leader>hh :set hlsearch!<cr>
 
-" Reload unchanged files automatically.
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
+" ---------------- Ansible -----------
+let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
+let g:ansible_attribute_highlight = "ob"
+let g:ansible_name_highlight = 'd'
+
+" --------------- NERDTree -------------
+let NERDTreeShowHidden=1           "Show hidden file in NERDTree
+nmap ,m :NERDTreeToggle<CR>
+nmap ,n :NERDTreeFind<CR>
+
+if has('nvim')
+    let g:deoplete#enable_at_startup = 1
+endif
+
+" ======== elixir && phoenix ============
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+let g:alchemist_iex_term_split = 'split'
+let g:alchemist_tag_map = '<C-]>'
+nnoremap <leader>ex :IEx<CR>
+
+" ------------- Reload unchanged files automatically -----------------
 set autoread
 au CursorHold * checktime
 
@@ -221,6 +182,32 @@ augroup END " }
 " ========= Edit & load .vimrc file =======
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
+
+" ------ PHP Namespaces Import -------------
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>pu <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>pu :call PhpInsertUse()<CR>
+
+" ---------- Expand Namespace ---------------
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
+
+au BufRead,BufNewFile *.php inoremap <buffer> <leader>pd :call PhpDoc()<CR>
+au BufRead,BufNewFile *.php nnoremap <buffer> <leader>pd :call PhpDoc()<CR>
+au BufRead,BufNewFile *.php vnoremap <buffer> <leader>pd :call PhpDocRange()<CR>
+
+" =============== FZF config =================
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+nnoremap <silent> <C-p> :FZF<CR>
+set rtp+=~/.fzf " ZFZ Fuzzy finder in go
+let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
 
 " ====== Generate ctags ==========
 command! Phpctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
@@ -259,22 +246,22 @@ endfunc
 
 nnoremap <leader>rr :echo cfi#format("%s", "")<CR>
 
-"Bubble/Move selected lines
+" -------------- Bubble/Move selected lines -----------
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-"Resize buffer
+" ------------- Resize buffer -----------------
 nnoremap <A-h> :vertical resize -5<cr>
 nnoremap <A-j> :resize +5<cr>
 nnoremap <A-k> :resize -5<cr>
 nnoremap <A-l> :vertical resize +5<cr>
 
-" SAVE
+" ----------- SAVE -----------------
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
-" set filetype for ractive template for pagevamp
+" -------------- set filetype for ractive template for pagevamp --------------
 autocmd BufNewFile,BufRead *.js.twig   set syntax=javascript
 autocmd BufNewFile,BufRead *.twig   set syntax=twig
 "autocmd BufNewFile,BufRead *.blade.php   set filetype=html
@@ -285,7 +272,6 @@ let g:netrw_localrmdir="rm -r"                  "delete non empty directory
 nnoremap - :Explore<CR>
 
 set laststatus=0
-
 
 "----------------------------- Theme bug fix / Always load the theme at last
 "--------------------------- Or the color schema seems off----------------------
