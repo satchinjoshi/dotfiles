@@ -1,6 +1,5 @@
 call plug#begin()
 
-Plug 'chiedo/vim-case-convert'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
@@ -9,7 +8,6 @@ Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
 Plug 'mhinz/vim-startify'
 Plug 'kshenoy/vim-signature'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
@@ -23,13 +21,18 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-projectionist'
+Plug 'thoughtbot/vim-rspec'
+Plug 'ecomba/vim-ruby-refactoring'
 Plug 'vimwiki/vimwiki'
 Plug 'jwalton512/vim-blade'
 Plug 'alvan/vim-php-manual'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
 Plug 'rking/ag.vim'
-Plug 'joshdick/onedark.vim'
+Plug 'vim-scripts/CSApprox'
+Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -63,19 +66,9 @@ let g:UltiSnipsEditSplit="vertical"
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>\<Space>"
 
-if $TERM == "xterm-256color"
-    set t_Co=256
-endif
-
 set mouse=""
 " for vim-ctrlspace
 set hidden
-"Theme
-syntax enable
-if has("termguicolors")
-    set termguicolors
-endif
-set background=dark
 set number
 set backspace=indent,eol,start        "Allow backspace in insert mode.
 set smartcase
@@ -134,6 +127,8 @@ autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
 set complete-=i
 "Set window title by default.
 set title
+set titleold="Terminal"
+set titlestring=%F
 "Show the line and column number of the cursor position.
 set ruler
 "Show white space and tab characters
@@ -273,11 +268,21 @@ nnoremap - :Explore<CR>
 
 set laststatus=0
 
-"----------------------------- Theme bug fix / Always load the theme at last
-"--------------------------- Or the color schema seems off----------------------
-colorscheme onedark
+" ---------- Theme -----------
+if $TERM == "xterm-256color"
+    set t_Co=256
+endif
+
+syntax enable
+if has("termguicolors")
+    set termguicolors
+endif
+set background=dark
+colorscheme quantum
+let g:quantum_italics=1
 set t_8f=^[[38;2;%lu;%lu;%lum  " Needed in tmux
 set t_8b=^[[48;2;%lu;%lu;%lum  " Ditto
+set t_ut=
 
 "Move cursor out for neovim terminal
 if has('nvim')
