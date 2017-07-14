@@ -231,9 +231,9 @@ nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
     if &filetype == 'php'
         if cfi#format('%s', '') == ''
-            exec "Start ./vendor/bin/phpunit --filter %:t:r %"
+            exec "!./vendor/bin/phpunit --filter %:t:r %"
         else
-            exec "Start ./vendor/bin/phpunit --filter ".cfi#format('%s', '')." %"
+            exec "!./vendor/bin/phpunit --filter ".cfi#format('%s', '')." %"
         endif
     elseif &filetype == 'elixir'
         exec "Start mix test %:p"
