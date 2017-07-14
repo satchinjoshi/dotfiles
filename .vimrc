@@ -33,6 +33,7 @@ Plug 'sumpygump/php-documentor-vim'
 Plug 'rking/ag.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/summerfruit256.vim'
+Plug 'reedes/vim-colors-pencil'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -278,7 +279,7 @@ if has("termguicolors")
     set termguicolors
 endif
 set background=light
-colorscheme summerfruit256
+colorscheme pencil
 let g:quantum_italics=1
 set t_8f=^[[38;2;%lu;%lu;%lum  " Needed in tmux
 set t_8b=^[[48;2;%lu;%lu;%lum  " Ditto
