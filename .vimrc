@@ -44,6 +44,7 @@ Plug 'honza/vim-snippets'
 Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 call plug#end()
 
@@ -200,7 +201,6 @@ au BufRead,BufNewFile *.php nnoremap <buffer> <leader>pd :call PhpDoc()<CR>
 au BufRead,BufNewFile *.php vnoremap <buffer> <leader>pd :call PhpDocRange()<CR>
 
 " =============== FZF config =================
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 nnoremap <silent> <C-p> :FZF<CR>
 set rtp+=~/.fzf " ZFZ Fuzzy finder in go
 let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
@@ -236,7 +236,9 @@ func! RunTest()
             exec "!./vendor/bin/phpunit --filter ".cfi#format('%s', '')." %"
         endif
     elseif &filetype == 'elixir'
-        exec "Start mix test %:p"
+        exec "!mix test %:p"
+    elseif &filetype == 'ruby'
+        exec "!ruby -I test %:p"
     endif
 endfunc
 
@@ -278,7 +280,7 @@ syntax enable
 if has("termguicolors")
     set termguicolors
 endif
-set background=light
+set background=dark
 colorscheme pencil
 let g:quantum_italics=1
 set t_8f=^[[38;2;%lu;%lu;%lum  " Needed in tmux
