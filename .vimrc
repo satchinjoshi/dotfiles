@@ -45,6 +45,7 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
@@ -272,20 +273,14 @@ nnoremap - :Explore<CR>
 set laststatus=0
 
 " ---------- Theme -----------
-if $TERM == "xterm-256color"
+" if $TERM == "xterm-256color"
     set t_Co=256
-endif
+" endif
 
 syntax enable
-if has("termguicolors")
-    set termguicolors
-endif
+set termguicolors
 set background=dark
 colorscheme pencil
-let g:quantum_italics=1
-set t_8f=^[[38;2;%lu;%lu;%lum  " Needed in tmux
-set t_8b=^[[48;2;%lu;%lu;%lum  " Ditto
-set t_ut=
 
 "Move cursor out for neovim terminal
 if has('nvim')
