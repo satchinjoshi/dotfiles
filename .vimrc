@@ -34,6 +34,7 @@ Plug 'rking/ag.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/summerfruit256.vim'
 Plug 'reedes/vim-colors-pencil'
+Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -45,7 +46,7 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
 
 call plug#end()
 
@@ -281,6 +282,7 @@ syntax enable
 set termguicolors
 set background=dark
 colorscheme pencil
+colorscheme dracula
 
 "Move cursor out for neovim terminal
 if has('nvim')
