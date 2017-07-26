@@ -65,29 +65,11 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 export GOPATH="$HOME/.go/pkg"
 export PATH="$PATH:$GOPATH/bin/"
 
-#Get back to vim by ctrl-z
-fancy-ctrl-z () {
-    if [[ $#BUFFER -eq 0 ]]; then
-        BUFFER="fg"
-        zle accept-line
-    else
-        zle push-input
-        zle clear-screen
-    fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-#Ctrl-S conflict fix for vim with zsh
-stty start undef
-stty stop undef
-setopt noflowcontrol
-
 ### Added by the Heroku Toolbelt
 export PATH="$PATH:/usr/local/heroku/bin"
 
 ### FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 eval $(thefuck --alias)
 
@@ -100,11 +82,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Elixir version manager
 # [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
-
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent -s`
-    ssh-add
-fi
 
 export PATH=$HOME/bin:$PATH
 
