@@ -32,8 +32,8 @@ Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
 Plug 'rking/ag.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'vim-scripts/summerfruit256.vim'
 Plug 'reedes/vim-colors-pencil'
+Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -278,9 +278,12 @@ set laststatus=0
 " endif
 
 syntax enable
+if has('nvim')
 set termguicolors
+endif
 set background=dark
-colorscheme pencil
+" color pencil
+color dracula
 
 "Move cursor out for neovim terminal
 if has('nvim')

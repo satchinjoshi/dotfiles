@@ -26,6 +26,8 @@ export TODO="t"
 # Set this to false to turn off version control status checking within the prompt for all themes
 export SCM_CHECK=true
 
+export EDITOR='nvim'
+
 # Set Xterm/screen/Tmux title with only a short hostname.
 # Uncomment this (or set SHORT_HOSTNAME to something else),
 # Will otherwise fall back on $HOSTNAME.
@@ -70,6 +72,14 @@ export PATH="$PATH:/usr/local/heroku/bin"
 
 ### FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+stty susp undef
+bind '"\C-z":"fg\015"'
+
+#Ctrl-S conflict fix for vim with zsh
+# stty start undef
+# stty stop undef
+# setopt noflowcontrol
 
 eval $(thefuck --alias)
 
