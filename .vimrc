@@ -45,7 +45,8 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/vim-easy-align'
+Plug 'godlygeek/tabular'
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end()
 
@@ -111,20 +112,6 @@ set shiftround
 set softtabstop=4
 
 filetype plugin indent on
-
-autocmd Filetype html setlocal ts=4 sts=4 sw=4
-autocmd Filetype blade setlocal ts=4 sts=4 sw=4
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
-autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
-autocmd Filetype scala setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
-autocmd Filetype php setlocal ts=4 sts=4 sw=4
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2
-autocmd FileType scss setlocal ts=2 sts=2 sw=2
-autocmd BufNewFile,BufRead *.docker   set syntax=dockerfile
 
 "Allow for mappings including Esc, while preserving zero timeout after pressing it manually.
 set complete-=i
@@ -282,8 +269,8 @@ if has('nvim')
 set termguicolors
 endif
 set background=dark
-" color pencil
-color dracula
+colorscheme pencil
+colorscheme dracula
 
 "Move cursor out for neovim terminal
 if has('nvim')
