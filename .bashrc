@@ -73,8 +73,8 @@ export PATH="$PATH:/usr/local/heroku/bin"
 ### FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-stty susp undef
-bind '"\C-z":"fg\015"'
+#stty susp undef
+#bind '"\C-z":"fg\015"'
 
 #Ctrl-S conflict fix for vim with zsh
 # stty start undef
