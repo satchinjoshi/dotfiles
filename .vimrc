@@ -28,7 +28,7 @@ Plug 'alvan/vim-php-manual'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'sumpygump/php-documentor-vim'
 Plug 'rking/ag.vim'
-Plug 'reedes/vim-colors-pencil'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -265,7 +265,6 @@ if has('nvim')
 set termguicolors
 endif
 set background=dark
-colorscheme pencil
 colorscheme dracula
 
 "Move cursor out for neovim terminal
