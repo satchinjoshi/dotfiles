@@ -43,6 +43,8 @@ Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
