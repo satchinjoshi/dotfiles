@@ -144,6 +144,10 @@ if has('nvim')
     let g:deoplete#enable_at_startup = 1
 endif
 
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
+
 " ======== elixir && phoenix ============
 let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 let g:alchemist_iex_term_split = 'split'
