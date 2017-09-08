@@ -220,10 +220,15 @@ endfunc
 nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
     if &filetype == 'php'
-        if cfi#format('%s', '') == ''
-            exec "!./vendor/bin/phpunit --filter %:t:r %"
+        if filereadable("docker-compose.yml")
+            let phpunit_exec = "Dispatch docker-compose exec app vendor/bin/phpunit"
         else
-            exec "!./vendor/bin/phpunit --filter ".cfi#format('%s', '')." %"
+            let phpunit_exec = "!./vendor/bin/phpunit"
+        end
+        if cfi#format('%s', '') == ''
+            exec phpunit_exec." --filter %:t:r %"
+        else
+            exec phpunit_exec." --filter ".cfi#format('%s', '')." %"
         endif
     elseif &filetype == 'elixir'
         exec "!mix test %:p"
