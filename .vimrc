@@ -232,7 +232,7 @@ func! RunTest()
     elseif &filetype == 'elixir'
         exec "!mix test %:p"
     elseif &filetype == 'ruby'
-        exec "!ruby -I test %:p"
+        exec "!RAILS_ENV=test ruby -I test %:p"
     endif
 endfunc
 
