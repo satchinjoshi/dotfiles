@@ -33,7 +33,8 @@ Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+" Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
+Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -51,11 +52,9 @@ call plug#end()
 " Add space after comment
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
-" ========== Neomake =============
-let g:neomake_verbose=3
-let g:neomake_place_signs = 1
-" let g:neomake_open_list = 2
-let g:neomake_php_phpcs_args_standard='PSR2'
+
+" ============ Ale
+let g:ale_php_phpcs_standard='PSR2'
 
 " ======== UltiSnips ==============
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
