@@ -33,7 +33,6 @@ Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'neomake/neomake' | Plug 'dojoteef/neomake-autolint'
 Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
@@ -46,6 +45,8 @@ Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
 Plug 'pangloss/vim-javascript'
+Plug 'itchyny/lightline.vim'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -275,7 +276,7 @@ if has('nvim')
 set termguicolors
 endif
 set background=dark
-colorscheme dracula
+colorscheme onedark
 
 "Move cursor out for neovim terminal
 if has('nvim')
