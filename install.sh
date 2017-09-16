@@ -13,10 +13,8 @@ elif output=$(which apt-get); then
     sudo apt-get install neovim \
       python-dev python-pip python3-dev \
       python3-pip git zsh  silversearcher-ag \
-      curl zlib1g-dev build-essential \
-      libssl-dev libreadline-dev libyaml-dev \
-      libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev \
-      libcurl4-openssl-dev python-software-properties libffi-dev \
+      curl libpq-dev build-essential \
+      libcurl4-openssl-dev libffi-dev \
       -y
 elif output=$(which brew); then
     brew install --HEAD neovim
