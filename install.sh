@@ -3,7 +3,8 @@ if output=$(which pacman); then
       git htop vim zsh tmux \
       python2-neovim python-neovim \
       openssl-1.0 the_silver_searcher \
-      docker docker-compose postgresql-libs
+      docker docker-compose postgresql-libs \
+      xclip
 
     sudo systemctl enable docker
     sudo usermod -aG docker $USER
