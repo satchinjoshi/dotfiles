@@ -234,6 +234,14 @@ func! RunTest()
         exec "!mix test %:p"
     elseif &filetype == 'ruby'
         exec "!RAILS_ENV=test ruby -I test %:p"
+    elseif &filetype == "javascript"
+        if filereadable("./node_modules/.bin/ava")
+            exec "!ava"
+        endif
+    elseif &filetype == "javascript.jsx"
+        if filereadable("./node_modules/.bin/ava")
+            exec "!ava"
+        endif
     endif
 endfunc
 
