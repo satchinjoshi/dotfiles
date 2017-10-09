@@ -18,7 +18,10 @@ elif output=$(which apt-get); then
       libcurl4-openssl-dev libffi-dev \
       -y
 elif output=$(which brew); then
-    brew install --HEAD neovim
+    brew install tmux \
+        zsh
+        --HEAD neovim
+        the_silver_searcher
 else
     printf 'update the code for os\n'
     exit 0
