@@ -45,7 +45,6 @@ Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
 Plug 'pangloss/vim-javascript'
-Plug 'itchyny/lightline.vim'
 Plug 'joshdick/onedark.vim'
 
 call plug#end()
