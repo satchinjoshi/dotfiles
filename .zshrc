@@ -73,6 +73,9 @@ export NVM_DIR="$HOME/.nvm"
 # Elixir version manager
 # [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
 
+# Elixir iex history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
     ssh-add
