@@ -10,6 +10,7 @@ Plug 'mhinz/vim-startify'
 Plug 'kshenoy/vim-signature'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
+Plug 'sbdchd/neoformat'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
@@ -46,6 +47,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
 Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
+Plug 'trevordmiller/nova-vim'
 
 call plug#end()
 
@@ -284,6 +286,7 @@ set termguicolors
 endif
 set background=dark
 colorscheme onedark
+colorscheme nova
 
 "Move cursor out for neovim terminal
 if has('nvim')
