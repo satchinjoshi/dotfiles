@@ -1,9 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="ys"
+ZSH_THEME="sobole"
 
-plugins=(git composer httpie emacs docker)
+plugins=(git composer httpie emacs docker zsh-syntax-highlighting)
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
