@@ -56,26 +56,25 @@ setopt noflowcontrol
 ### Added by the Heroku Toolbelt
 export PATH="$PATH:/usr/local/heroku/bin"
 
-### RVM
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+### rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 ### FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+### nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# if [ $TERMINIX_ID ] || [ $VTE_VERSION ]; then
-    # source /etc/profile.d/vte.sh
-# fi
-
-# Elixir version manager
-# [[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
+### Elixir version manager
 test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
 
-# Elixir iex history
+### Elixir iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+### Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
@@ -89,7 +88,3 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-export PATH="$HOME/.cargo/bin:$PATH"
