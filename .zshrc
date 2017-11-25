@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="sobole"
+ZSH_THEME="ys"
 
 plugins=(git composer httpie emacs docker zsh-syntax-highlighting)
 
