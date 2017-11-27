@@ -48,6 +48,8 @@ Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
 Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
 Plug 'trevordmiller/nova-vim'
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/racer'
 
 call plug#end()
 
@@ -286,7 +288,7 @@ set termguicolors
 endif
 set background=dark
 colorscheme onedark
-colorscheme nova
+" colorscheme nova
 
 "Move cursor out for neovim terminal
 if has('nvim')
