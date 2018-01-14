@@ -36,9 +36,13 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 mkdir -p ~/.config/nvim
 mkdir -p ~/.config/nvim/backup
 
+# Install Oh-my-zsh
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # link the vim, nvim, zsh, bash and tmux rc file
 ln -sf ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
+rm ~/.zshrc
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
@@ -72,7 +76,3 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | b
 source ~/.zshrc
 nvm install node
 nvm use node
-
-# Install Oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
