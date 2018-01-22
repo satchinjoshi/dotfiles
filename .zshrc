@@ -2,6 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="ys"
+ZSH_THEME="sorin"
 
 plugins=(git composer httpie emacs docker zsh-syntax-highlighting)
 
