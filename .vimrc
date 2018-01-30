@@ -56,6 +56,7 @@ call plug#end()
 " Add space after comment
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
+set binary
 
 " ============ Ale
 let g:ale_php_phpcs_standard='PSR2'
@@ -319,7 +320,7 @@ if has('nvim')
 endif
 
 "Auto Remove White Space
-autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\s\+$//e
 
 "convert tabs to Space
 command! Tabstospace %s/\t/  /g
