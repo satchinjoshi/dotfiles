@@ -4,7 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 ZSH_THEME="norm"
 
-plugins=(git composer httpie emacs docker zsh-syntax-highlighting)
+plugins=(git composer httpie emacs docker zsh-syntax-highlighting aws)
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
