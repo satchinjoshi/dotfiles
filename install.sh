@@ -57,22 +57,3 @@ git config --global core.excludesfile ~/.gitignore_global
 git config --global user.email "satchin.joshi@gmail.com"
 git config --global user.name "Sachin Joshi"
 
-# Install rbenv & ruby
-if [ ! -d ~/.rbenv ]; then
-    git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    exec $SHELL
-fi
-
-if [ ! -d ~/.rbenv/plugins/ruby-build ]; then
-    git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-    exec $SHELL
-fi
-
-rbenv install 2.4.1
-rbenv global 2.4.1
-
-# Install nvm & node
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
-source ~/.zshrc
-nvm install node
-nvm use node
