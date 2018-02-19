@@ -102,7 +102,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 [[ -f $HOME/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . $HOME/.nvm/versions/node/v8.9.4/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f $HOME/google-cloud-sdk/path.zsh.inc ]; then source $HOME/google-cloud-sdk/path.zsh.inc; fi
+if [ -f /opt/google-cloud-sdk/path.zsh.inc ]; then source /opt/google-cloud-sdk/path.zsh.inc; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f $HOME/google-cloud-sdk/completion.zsh.inc ]; then source $HOME/google-cloud-sdk/completion.zsh.inc; fi
+if [ -f /opt/google-cloud-sdk/completion.zsh.inc ]; then source /opt/google-cloud-sdk/completion.zsh.inc; fi

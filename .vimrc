@@ -50,6 +50,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'trevordmiller/nova-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 
