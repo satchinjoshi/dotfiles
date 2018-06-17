@@ -174,7 +174,7 @@ endif
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
-" autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 " autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 " autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3

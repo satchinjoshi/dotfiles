@@ -32,7 +32,7 @@ export TERM="xterm-256color"
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 # Go
-export GOPATH="$HOME/.go/pkg"
+export GOPATH="$HOME/code/go"
 export PATH="$PATH:$GOPATH/bin/"
 
 #Get back to vim by ctrl-z
@@ -98,3 +98,5 @@ if [ -f /opt/google-cloud-sdk/path.zsh.inc ]; then source /opt/google-cloud-sdk/
 if [ -f /opt/google-cloud-sdk/completion.zsh.inc ]; then source /opt/google-cloud-sdk/completion.zsh.inc; fi
 
 export PATH=$PATH:~/.fabric8/bin
+export PATH=$HOME/bin:$PATH
+source ~/bin/tmuxinator.zsh
