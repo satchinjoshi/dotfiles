@@ -68,8 +68,14 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
-
+if output=$(which pacman); then
+    if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
+elif output=$(which apt-get); then
+    ## for ubuntu
+elif output=$(which brew); then
+    export NVM_DIR="$HOME/.nvm"
+    . "/usr/local/opt/nvm/nvm.sh"
+fi
 
 ### Elixir version manager
 # test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
