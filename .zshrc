@@ -93,9 +93,14 @@ fi
 
 export PATH=$HOME/bin:$PATH
 
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
+if output=$(which pacman); then
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
+elif output=$(which apt-get); then
+    ## for ubuntu
+elif output=$(which brew); then
+    source /usr/local/opt/asdf/asdf.sh
+fi
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /opt/google-cloud-sdk/path.zsh.inc ]; then source /opt/google-cloud-sdk/path.zsh.inc; fi
