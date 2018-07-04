@@ -6,7 +6,6 @@ Plug 'mhinz/vim-signify'
 Plug 'tyru/current-func-info.vim'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
-Plug 'mhinz/vim-startify'
 Plug 'kshenoy/vim-signature'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
@@ -191,10 +190,6 @@ let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 let g:alchemist_iex_term_split = 'split'
 let g:alchemist_tag_map = '<C-]>'
 nnoremap <leader>ex :IEx<CR>
-
-" ------------- Reload unchanged files automatically -----------------
-set autoread
-au CursorHold * checktime
 
 " ======= autoreload rc file on save ========
 augroup reload_vimrc " {

@@ -20,7 +20,11 @@ export ARCHFLAGS="-arch x86_64"
 
 alias vi="nvim"
 alias gstart="git init && git add --all && git commit -m \"initial commit\""
-alias open="chromium --app"
+if output=$(which pacman); then
+    alias open="chromium --app"
+elif output=$(which apt-get); then
+    alias open="chromium --app"
+fi
 [ -f ~/.alias ] && source ~/.alias
 
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -111,3 +115,5 @@ if [ -f /opt/google-cloud-sdk/completion.zsh.inc ]; then source /opt/google-clou
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
