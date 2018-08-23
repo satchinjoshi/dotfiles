@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="kolo"
 
-plugins=(git composer httpie docker zsh-syntax-highlighting aws source <(kubectl completion zsh))
+plugins=(git composer httpie colored-man colorize docker brew osx zsh-syntax-highlighting aws source <(kubectl completion zsh))
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -106,14 +106,21 @@ elif output=$(which brew); then
     source /usr/local/opt/asdf/asdf.sh
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /opt/google-cloud-sdk/path.zsh.inc ]; then source /opt/google-cloud-sdk/path.zsh.inc; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /opt/google-cloud-sdk/completion.zsh.inc ]; then source /opt/google-cloud-sdk/completion.zsh.inc; fi
-
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then source '~/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then source '~/google-cloud-sdk/completion.zsh.inc'; fi

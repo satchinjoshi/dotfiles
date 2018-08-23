@@ -197,6 +197,10 @@ augroup reload_vimrc " {
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
+" ------------- Reload unchanged files automatically -----------------	
+set autoread
+au CursorHold * checktime
+
 " ========= Edit & load .vimrc file =======
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
@@ -242,7 +246,7 @@ func! RunFile()
     elseif &filetype == 'sh'
         exec "!bash %:p"
     elseif &filetype == 'elixir'
-        exec "!elixir -r %:p"
+        exec "!mix format %:p"
     elseif &filetype == 'javascript'
         exec "!node %:p"
     endif
@@ -283,10 +287,10 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " ------------- Resize buffer -----------------
-nnoremap <A-h> :vertical resize -5<cr>
-nnoremap <A-j> :resize +5<cr>
-nnoremap <A-k> :resize -5<cr>
-nnoremap <A-l> :vertical resize +5<cr>
+nnoremap <C-h> :vertical resize -5<cr>
+nnoremap <C-j> :resize +5<cr>
+nnoremap <C-k> :resize -5<cr>
+nnoremap <C-l> :vertical resize +5<cr>
 
 " ----------- SAVE -----------------
 nnoremap <C-s> :update<CR>
