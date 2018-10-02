@@ -50,6 +50,10 @@ Plug 'trevordmiller/nova-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
+" terraform
+Plug 'hashivim/vim-terraform'
+Plug 'vim-syntastic/syntastic'
+Plug 'juliosueiras/vim-terraform-completion'
 
 call plug#end()
 
@@ -57,6 +61,12 @@ call plug#end()
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
 set binary
+
+" --------------- Terraform ----------
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
+let g:deoplete#enable_at_startup = 1
+call deoplete#initialize()
 
 " ============ Ale
 let g:ale_php_phpcs_standard='PSR2'
