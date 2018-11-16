@@ -26,6 +26,7 @@ elif output=$(which apt-get); then
     alias open="chromium --app"
 fi
 [ -f ~/.alias ] && source ~/.alias
+[ -f ~/.local ] && source ~/.local
 
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
@@ -69,17 +70,14 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ### nvm
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-if output=$(which pacman); then
-    if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
-elif output=$(which apt-get); then
-    ## for ubuntu
-elif output=$(which brew); then
-    export NVM_DIR="$HOME/.nvm"
-    . "/usr/local/opt/nvm/nvm.sh"
-fi
+# if output=$(which pacman); then
+    # if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
+# elif output=$(which apt-get); then
+    # ## for ubuntu
+# elif output=$(which brew); then
+    # export NVM_DIR="$HOME/.nvm"
+    # . "/usr/local/opt/nvm/nvm.sh"
+# fi
 
 ### Elixir version manager
 # test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
@@ -109,18 +107,3 @@ fi
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . ~/.nvm/versions/node/v8.11.3/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then source '~/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then source '~/google-cloud-sdk/completion.zsh.inc'; fi

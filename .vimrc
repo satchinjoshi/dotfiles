@@ -50,6 +50,7 @@ Plug 'trevordmiller/nova-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
+Plug 'elmcast/elm-vim'
 " terraform
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
@@ -67,9 +68,6 @@ let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
 let g:deoplete#enable_at_startup = 1
 call deoplete#initialize()
-
-" ============ Ale
-let g:ale_php_phpcs_standard='PSR2'
 
 " Settings for Ale
 let g:ale_lint_on_text_changed = 'never'
