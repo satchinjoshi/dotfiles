@@ -1,6 +1,5 @@
 call plug#begin()
 
-Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'tyru/current-func-info.vim'
@@ -16,17 +15,12 @@ Plug 'tpope/vim-projectionist' " required for some navigation features
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'metakirby5/codi.vim'
-Plug 'posva/vim-vue'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist'
 Plug 'vimwiki/vimwiki'
-Plug 'jwalton512/vim-blade'
-Plug 'alvan/vim-php-manual'
-Plug 'arnaud-lb/vim-php-namespace'
-Plug 'sumpygump/php-documentor-vim'
 Plug 'rking/ag.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'dracula/vim'
@@ -43,7 +37,6 @@ Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'godlygeek/tabular'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'padawan-php/deoplete-padawan', { 'do': 'composer install' }
 Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
 Plug 'trevordmiller/nova-vim'
@@ -51,10 +44,13 @@ Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
+Plug 'digitaltoad/vim-pug'
 " terraform
 Plug 'hashivim/vim-terraform'
 Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
+
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 call plug#end()
 
@@ -62,6 +58,8 @@ call plug#end()
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
 set binary
+
+let g:deoplete#num_processes = 1
 
 " --------------- Terraform ----------
 let g:deoplete#omni_patterns = {}
@@ -171,6 +169,10 @@ if has("unix")
     let g:python3_host_prog = '/usr/bin/python3'
   endif
 endif
+
+au BufNewFile,BufRead Jenkinsfile setf groovy
+autocmd Filetype groovy setlocal ts=2 sts=2 sw=2
+
 " ---------------- Ansible -----------
 let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
 let g:ansible_attribute_highlight = "ob"
@@ -213,41 +215,18 @@ au CursorHold * checktime
 nnoremap <leader>ev :tabe $MYVIMRC<cr>
 nnoremap <leader>so :source $MYVIMRC<cr>
 
-" ------ PHP Namespaces Import -------------
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>pu <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>pu :call PhpInsertUse()<CR>
-
-" ---------- Expand Namespace ---------------
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
-autocmd FileType php inoremap <Leader>pe <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>pe :call PhpExpandClass()<CR>
-
-au BufRead,BufNewFile *.php inoremap <buffer> <leader>pd :call PhpDoc()<CR>
-au BufRead,BufNewFile *.php nnoremap <buffer> <leader>pd :call PhpDoc()<CR>
-au BufRead,BufNewFile *.php vnoremap <buffer> <leader>pd :call PhpDocRange()<CR>
-
 " =============== FZF config =================
 nnoremap <silent> <C-p> :FZF<CR>
 set rtp+=~/.fzf " ZFZ Fuzzy finder in go
 let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
 
 " ====== Generate ctags ==========
-command! Phpctags execute "Dispatch ctags -R --fields=+laimS --languages=php"
 command! Rubyctags execute "Dispatch ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
 
 " ======= run current file in console =======
 nnoremap <leader>rf :call RunFile()<CR>
 func! RunFile()
-    if &filetype == 'php'
-        exec "!php %:p"
-    elseif &filetype == 'go'
+    if &filetype == 'go'
         exec "!go run %:p"
     elseif &filetype == 'ruby'
         exec "!ruby %:p"
@@ -262,18 +241,7 @@ endfunc
 " ====== Run unit test ============
 nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
-    if &filetype == 'php'
-        if filereadable("docker-compose.yml")
-            let phpunit_exec = "Dispatch docker-compose exec app vendor/bin/phpunit"
-        else
-            let phpunit_exec = "!./vendor/bin/phpunit"
-        end
-        if cfi#format('%s', '') == ''
-            exec phpunit_exec." --filter %:t:r %"
-        else
-            exec phpunit_exec." --filter ".cfi#format('%s', '')." %"
-        endif
-    elseif &filetype == 'elixir'
+    if &filetype == 'elixir'
         exec "!mix test %:p"
     elseif &filetype == 'ruby'
         exec "!RAILS_ENV=test ruby -I test %:p"
@@ -290,6 +258,10 @@ endfunc
 
 nnoremap <leader>rr :echo cfi#format("%s", "")<CR>
 
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 " -------------- Bubble/Move selected lines -----------
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -305,11 +277,6 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
 
-" -------------- set filetype for ractive template for pagevamp --------------
-autocmd BufNewFile,BufRead *.js.twig   set syntax=javascript
-autocmd BufNewFile,BufRead *.twig   set syntax=twig
-"autocmd BufNewFile,BufRead *.blade.php   set filetype=html
-
 " --------- netrw settings -------------
 let g:netrw_localrmdir="rm -r"                  "delete non empty directory
 " let g:netrw_liststyle=3                         "tree style for netrw
@@ -318,9 +285,7 @@ nnoremap - :Explore<CR>
 set laststatus=0
 
 " ---------- Theme -----------
-" if $TERM == "xterm-256color"
     set t_Co=256
-" endif
 
 syntax enable
 if has('nvim')
@@ -345,3 +310,5 @@ command! Tabstospace %s/\t/  /g
 " autocmd bufwritepost *.js silent !standard --fix %
 "
 :nmap <leader>ll m`b~``
+
+set exrc

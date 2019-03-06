@@ -19,14 +19,14 @@ export EDITOR='nvim'
 export ARCHFLAGS="-arch x86_64"
 
 alias vi="nvim"
-alias gstart="git init && git add --all && git commit -m \"initial commit\""
+
 if output=$(which pacman); then
     alias open="chromium --app"
 elif output=$(which apt-get); then
     alias open="chromium --app"
 fi
+
 [ -f ~/.alias ] && source ~/.alias
-[ -f ~/.local ] && source ~/.local
 
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
@@ -69,19 +69,6 @@ export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 ### FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-### nvm
-# if output=$(which pacman); then
-    # if [ -f /usr/share/nvm/init-nvm.sh ]; then source /usr/share/nvm/init-nvm.sh; fi
-# elif output=$(which apt-get); then
-    # ## for ubuntu
-# elif output=$(which brew); then
-    # export NVM_DIR="$HOME/.nvm"
-    # . "/usr/local/opt/nvm/nvm.sh"
-# fi
-
-### Elixir version manager
-# test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
-
 ### Elixir iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -101,9 +88,12 @@ if output=$(which pacman); then
 elif output=$(which apt-get); then
     ## for ubuntu
 elif output=$(which brew); then
-    source /usr/local/opt/asdf/asdf.sh
+    . $HOME/.asdf/asdf.sh
+    . $HOME/.asdf/completions/asdf.bash
 fi
 
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
+# export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
