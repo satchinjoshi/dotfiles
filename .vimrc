@@ -2,13 +2,13 @@ call plug#begin()
 
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'tyru/current-func-info.vim'
+" Plug 'tyru/current-func-info.vim'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
-Plug 'kshenoy/vim-signature'
+" Plug 'kshenoy/vim-signature'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 Plug 'slashmili/alchemist.vim'
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist' " required for some navigation features
@@ -36,7 +36,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'godlygeek/tabular'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
 Plug 'trevordmiller/nova-vim'
@@ -51,6 +50,9 @@ Plug 'vim-syntastic/syntastic'
 Plug 'juliosueiras/vim-terraform-completion'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
+
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
@@ -183,9 +185,7 @@ let NERDTreeShowHidden=1           "Show hidden file in NERDTree
 nmap ,m :NERDTreeToggle<CR>
 nmap ,n :NERDTreeFind<CR>
 
-if has('nvim')
-    let g:deoplete#enable_at_startup = 1
-endif
+let g:deoplete#enable_at_startup = 1
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2

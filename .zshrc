@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="kolo"
 
-plugins=(git composer httpie colored-man colorize docker brew osx zsh-syntax-highlighting aws source <(kubectl completion zsh))
+plugins=(git helm kubectl composer httpie colored-man colorize docker brew osx zsh-syntax-highlighting aws source <(kubectl completion zsh))
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
