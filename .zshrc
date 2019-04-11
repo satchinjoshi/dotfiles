@@ -31,7 +31,7 @@ fi
 #export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 # tmux color fixes
-export TERM="xterm-256color"
+# export TERM="xterm-256color"
 
 # Composer
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
@@ -97,3 +97,6 @@ export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
 # export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
 export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/sachinjoshi/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;

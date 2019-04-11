@@ -2,27 +2,17 @@ call plug#begin()
 
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-" Plug 'tyru/current-func-info.vim'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
-" Plug 'kshenoy/vim-signature'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
-" Plug 'sbdchd/neoformat'
 Plug 'slashmili/alchemist.vim'
-Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-projectionist' " required for some navigation features
-Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'metakirby5/codi.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-projectionist'
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
-Plug 'NLKNguyen/papercolor-theme'
 Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -35,19 +25,13 @@ Plug 'radenling/vim-dispatch-neovim'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'godlygeek/tabular'
 Plug 'pangloss/vim-javascript'
 Plug 'joshdick/onedark.vim'
-Plug 'trevordmiller/nova-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
-" terraform
-Plug 'hashivim/vim-terraform'
-Plug 'vim-syntastic/syntastic'
-Plug 'juliosueiras/vim-terraform-completion'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
@@ -293,22 +277,10 @@ set termguicolors
 endif
 set background=dark
 colorscheme onedark
-" colorscheme nova
 
 "Move cursor out for neovim terminal
 if has('nvim')
 :tnoremap <Esc> <C-\><C-n><C-w><C-w>
 endif
-
-"Auto Remove White Space
-" autocmd BufWritePre * %s/\s\+$//e
-
-"convert tabs to Space
-command! Tabstospace %s/\t/  /g
-
-"Auto Format JS file as per "standard
-" autocmd bufwritepost *.js silent !standard --fix %
-"
-:nmap <leader>ll m`b~``
 
 set exrc
