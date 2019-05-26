@@ -3,7 +3,6 @@ call plug#begin()
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Shougo/deoplete.nvim',    { 'do': ':UpdateRemotePlugins' }
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
@@ -13,7 +12,6 @@ Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/sy
 Plug 'vim-ruby/vim-ruby'
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
-Plug 'dracula/vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -26,17 +24,21 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'pangloss/vim-javascript'
-Plug 'joshdick/onedark.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 
+Plug 'dracula/vim'
+Plug 'joshdick/onedark.vim'
+Plug 'aonemd/kuroi.vim'
+
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
+Plug 'heavenshell/vim-jsdoc'
 
 call plug#end()
 
@@ -44,14 +46,6 @@ call plug#end()
 let g:NERDSpaceDelims = 1                 "Add a space after comment
 
 set binary
-
-let g:deoplete#num_processes = 1
-
-" --------------- Terraform ----------
-let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-let g:deoplete#enable_at_startup = 1
-call deoplete#initialize()
 
 " Settings for Ale
 let g:ale_lint_on_text_changed = 'never'
@@ -159,17 +153,10 @@ endif
 au BufNewFile,BufRead Jenkinsfile setf groovy
 autocmd Filetype groovy setlocal ts=2 sts=2 sw=2
 
-" ---------------- Ansible -----------
-let g:ansible_extra_syntaxes = "sh.vim ruby.vim"
-let g:ansible_attribute_highlight = "ob"
-let g:ansible_name_highlight = 'd'
-
 " --------------- NERDTree -------------
 let NERDTreeShowHidden=1           "Show hidden file in NERDTree
 nmap ,m :NERDTreeToggle<CR>
 nmap ,n :NERDTreeFind<CR>
-
-let g:deoplete#enable_at_startup = 1
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
@@ -269,14 +256,14 @@ nnoremap - :Explore<CR>
 set laststatus=0
 
 " ---------- Theme -----------
-    set t_Co=256
+set t_Co=256
 
 syntax enable
-if has('nvim')
 set termguicolors
-endif
 set background=dark
 colorscheme onedark
+colorscheme dracula
+colorscheme kuroi
 
 "Move cursor out for neovim terminal
 if has('nvim')

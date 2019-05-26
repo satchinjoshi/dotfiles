@@ -6,7 +6,6 @@ ZSH_THEME="kolo"
 plugins=(git helm kubectl composer httpie colored-man colorize docker brew osx zsh-syntax-highlighting aws source <(kubectl completion zsh))
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-# export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -20,21 +19,7 @@ export ARCHFLAGS="-arch x86_64"
 
 alias vi="nvim"
 
-if output=$(which pacman); then
-    alias open="chromium --app"
-elif output=$(which apt-get); then
-    alias open="chromium --app"
-fi
-
 [ -f ~/.alias ] && source ~/.alias
-
-#export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-
-# tmux color fixes
-# export TERM="xterm-256color"
-
-# Composer
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 # Go
 export GOPATH="$HOME/code/go"
@@ -58,9 +43,6 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
-### Added by the Heroku Toolbelt
-export PATH="$PATH:/usr/local/heroku/bin"
-
 ### rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -80,8 +62,6 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     ssh-add
 fi
 
-export PATH=$HOME/bin:$PATH
-
 if output=$(which pacman); then
     . $HOME/.asdf/asdf.sh
     . $HOME/.asdf/completions/asdf.bash
@@ -95,8 +75,3 @@ fi
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
-# export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
-export PATH="/usr/local/opt/postgresql@10/bin:$PATH"
-
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/sachinjoshi/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
