@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="kolo"
 
-plugins=(git helm kubectl composer httpie colored-man colorize docker brew osx zsh-syntax-highlighting aws source <(kubectl completion zsh))
+plugins=(git helm kubectl composer httpie colorize docker brew osx aws kubectl)
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
@@ -43,11 +43,6 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
-### rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-
 ### FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -75,3 +70,4 @@ fi
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
+export PATH="/usr/local/opt/sqlite/bin:$PATH"

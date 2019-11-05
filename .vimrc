@@ -7,8 +7,9 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
@@ -30,6 +31,8 @@ Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
 Plug 'aonemd/kuroi.vim'
@@ -39,6 +42,8 @@ Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'heavenshell/vim-jsdoc'
+
+Plug 'rizzatti/dash.vim'
 
 call plug#end()
 
@@ -162,6 +167,7 @@ autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype pug setlocal ts=2 sts=2 sw=2
 " autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 " autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3
