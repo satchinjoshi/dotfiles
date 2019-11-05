@@ -52,11 +52,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 ### Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval `ssh-agent -s`
-    ssh-add
-fi
-
 if output=$(which pacman); then
     . $HOME/.asdf/asdf.sh
     . $HOME/.asdf/completions/asdf.bash
