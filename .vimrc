@@ -33,9 +33,7 @@ Plug 'digitaltoad/vim-pug'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'dracula/vim'
 Plug 'joshdick/onedark.vim'
-Plug 'aonemd/kuroi.vim'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
@@ -44,6 +42,8 @@ Plug 'leafgarland/typescript-vim'
 Plug 'heavenshell/vim-jsdoc'
 
 Plug 'rizzatti/dash.vim'
+
+Plug 'joukevandermaas/vim-ember-hbs'
 
 call plug#end()
 
@@ -268,8 +268,6 @@ syntax enable
 set termguicolors
 set background=dark
 colorscheme onedark
-colorscheme dracula
-colorscheme kuroi
 
 "Move cursor out for neovim terminal
 if has('nvim')

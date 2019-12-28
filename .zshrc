@@ -66,3 +66,6 @@ export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
 source ~/bin/tmuxinator.zsh
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
