@@ -235,6 +235,21 @@ endfunc
 
 nnoremap <leader>rr :echo cfi#format("%s", "")<CR>
 
+" ====== apply kubernetes config ============
+nnoremap <leader>ka :call ApplyK8sConfig()<CR>
+func! ApplyK8sConfig()
+    if &filetype == 'yaml'
+        exec "!kubectl apply -f %:p"
+    endif
+endfunc
+" ====== delete kubernetes config ============
+nnoremap <leader>kd :call DeleteK8sConfig()<CR>
+func! DeleteK8sConfig()
+    if &filetype == 'yaml'
+        exec "!kubectl delete -f %:p"
+    endif
+endfunc
+
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
