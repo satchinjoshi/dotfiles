@@ -166,6 +166,7 @@ nmap ,n :NERDTreeFind<CR>
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
+autocmd Filetype haskell setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype pug setlocal ts=2 sts=2 sw=2
 " autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
