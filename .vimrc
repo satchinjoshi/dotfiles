@@ -45,6 +45,11 @@ Plug 'rizzatti/dash.vim'
 
 Plug 'joukevandermaas/vim-ember-hbs'
 
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
+
+Plug 'kassio/neoterm'
+
 call plug#end()
 
 " Add space after comment
@@ -53,7 +58,7 @@ let g:NERDSpaceDelims = 1                 "Add a space after comment
 set binary
 
 " Settings for Ale
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_javascript_eslint_executable = 'eslint_d'
@@ -168,7 +173,9 @@ autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
 autocmd Filetype haskell setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
 autocmd Filetype pug setlocal ts=2 sts=2 sw=2
+autocmd Filetype python setlocal ts=2 sts=2 sw=2
 " autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 " autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3
@@ -216,6 +223,7 @@ func! RunFile()
         exec "!node %:p"
     endif
 endfunc
+
 " ====== Run unit test ============
 nnoremap <leader>rt :call RunTest()<CR>
 func! RunTest()
@@ -223,14 +231,6 @@ func! RunTest()
         exec "!mix test %:p"
     elseif &filetype == 'ruby'
         exec "!RAILS_ENV=test ruby -I test %:p"
-    elseif &filetype == "javascript"
-        if filereadable("./node_modules/.bin/ava")
-            exec "!ava"
-        endif
-    elseif &filetype == "javascript.jsx"
-        if filereadable("./node_modules/.bin/ava")
-            exec "!ava"
-        endif
     endif
 endfunc
 
@@ -285,9 +285,50 @@ set termguicolors
 set background=dark
 colorscheme onedark
 
-"Move cursor out for neovim terminal
-if has('nvim')
-:tnoremap <Esc> <C-\><C-n><C-w><C-w>
+set exrc
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
-set exrc
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
