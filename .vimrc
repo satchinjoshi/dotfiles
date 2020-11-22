@@ -5,14 +5,12 @@ Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
 Plug 'vimwiki/vimwiki'
-Plug 'rking/ag.vim'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -20,10 +18,9 @@ Plug 'w0rp/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'radenling/vim-dispatch-neovim'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/racer'
@@ -31,26 +28,15 @@ Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 Plug 'joshdick/onedark.vim'
-
-Plug 'martinda/Jenkinsfile-vim-syntax'
 
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'heavenshell/vim-jsdoc'
 
-Plug 'rizzatti/dash.vim'
-
-Plug 'joukevandermaas/vim-ember-hbs'
-
-Plug 'tyru/open-browser.vim'
-Plug 'tyru/open-browser-github.vim'
-
-Plug 'kassio/neoterm'
-
 call plug#end()
+
+" setlocal spell spelllang=en_us
 
 " Add space after comment
 let g:NERDSpaceDelims = 1                 "Add a space after comment
@@ -58,16 +44,23 @@ let g:NERDSpaceDelims = 1                 "Add a space after comment
 set binary
 
 " Settings for Ale
-" let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {}
 let g:ale_sign_column_always = 1
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-let g:ale_javascript_eslint_executable = 'eslint_d'
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
+let g:ale_completion_enabled = 1
+let g:ale_javascript_eslint_executable = 'eslint'
+let g:ale_list_window_size = 50
+" let g:ale_completion_tsserver_autoimport = 1
+let g:ale_completion_autoimport = 1
+let g:ale_elixir_elixir_ls_release = expand('~/.vim/plugged/vim-elixirls/elixir-ls/release')
+let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:true } }
+let g:ale_linters.elixir = [ 'elixir-ls', 'credo' ]
 
 augroup AleGroup
-    autocmd!
-    autocmd User ALELint call TouchOpenFile()
+  autocmd!
+  autocmd User ALELint call TouchOpenFile()
 augroup END
 
 func! TouchOpenFile()
@@ -76,6 +69,20 @@ func! TouchOpenFile()
     w
     let g:ale_enabled = 1
 endfunc
+
+function ALELSPMappings()
+    let l:lsp_found=0
+    for l:linter in ale#linter#Get(&filetype) | if !empty(l:linter.lsp) | let l:lsp_found=1 | endif | endfor
+    if (l:lsp_found)
+        nnoremap <buffer> <C-]> :ALEGoToDefinition<CR>
+        nnoremap <buffer> <C-^> :ALEFindReferences<CR>
+    else
+        silent! unmap <buffer> <C-]>
+        silent! unmap <buffer> <C-^>
+    endif
+endfunction
+autocmd BufRead,FileType * call ALELSPMappings()
+nnoremap <C-]> :GoDef<CR>
 
 " ======== UltiSnips ==============
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -180,12 +187,6 @@ autocmd Filetype python setlocal ts=2 sts=2 sw=2
 " autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3
 
-" ======== elixir && phoenix ============
-let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
-let g:alchemist_iex_term_split = 'split'
-let g:alchemist_tag_map = '<C-]>'
-nnoremap <leader>ex :IEx<CR>
-
 " ======= autoreload rc file on save ========
 augroup reload_vimrc " {
     autocmd!
@@ -204,6 +205,8 @@ nnoremap <leader>so :source $MYVIMRC<cr>
 nnoremap <silent> <C-p> :FZF<CR>
 set rtp+=~/.fzf " ZFZ Fuzzy finder in go
 let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
+
+nnoremap <leader>gg :Gstatus<cr>
 
 " ====== Generate ctags ==========
 command! Rubyctags execute "Dispatch ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
@@ -278,49 +281,16 @@ nnoremap - :Explore<CR>
 set laststatus=0
 
 " ---------- Theme -----------
-set t_Co=256
+" set t_Co=256
 
 syntax enable
-set termguicolors
+" set termguicolors
 set background=dark
+" colorscheme PaperColor
 colorscheme onedark
+" colorscheme medic_chalk
 
 set exrc
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
