@@ -10,11 +10,11 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -27,6 +27,8 @@ Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'LnL7/vim-nix'
+Plug 'jvirtanen/vim-hcl'
 
 Plug 'joshdick/onedark.vim'
 
@@ -52,11 +54,15 @@ let g:ale_sign_warning = '⚠'
 let g:ale_completion_enabled = 1
 let g:ale_javascript_eslint_executable = 'eslint'
 let g:ale_list_window_size = 50
+let g:ale_terraform_langserver_executable = 'terraform-ls'
 " let g:ale_completion_tsserver_autoimport = 1
 let g:ale_completion_autoimport = 1
 let g:ale_elixir_elixir_ls_release = expand('~/.vim/plugged/vim-elixirls/elixir-ls/release')
 let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:true } }
 let g:ale_linters.elixir = [ 'elixir-ls', 'credo' ]
+let g:ale_linters.terraform = [ 'terraform-ls', 'tflint', 'terraform' ]
+let g:ale_linters.typescript = [ 'prettier', 'eslint', 'tslint', 'tsserver', 'typecheck' ]
+let g:ale_linters.go = ['gofmt', 'golint', 'go vet', 'golangci-lint']
 
 augroup AleGroup
   autocmd!
@@ -159,10 +165,10 @@ map <leader>hh :set hlsearch!<cr>
 if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
-    let g:python_host_prog = '/usr/local/bin/python'
+    " let g:python_host_prog = '/usr/local/bin/python'
     let g:python3_host_prog = '/usr/local/bin/python3'
   else
-    let g:python_host_prog = '/usr/bin/python'
+    " let g:python_host_prog = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3'
   endif
 endif
@@ -181,8 +187,10 @@ autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
 autocmd Filetype haskell setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescriptreact setlocal ts=2 sts=2 sw=2
 autocmd Filetype pug setlocal ts=2 sts=2 sw=2
 autocmd Filetype python setlocal ts=2 sts=2 sw=2
+autocmd Filetype proto setlocal ts=2 sts=2 sw=2
 " autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2
 " autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3
@@ -220,10 +228,22 @@ func! RunFile()
         exec "!ruby %:p"
     elseif &filetype == 'sh'
         exec "!bash %:p"
-    elseif &filetype == 'elixir'
-        exec "!mix format %:p"
     elseif &filetype == 'javascript'
         exec "!node %:p"
+    endif
+endfunc
+
+" ======= run current file in console =======
+nnoremap <leader>ff :call FormatFile()<CR>
+func! FormatFile()
+    if &filetype == 'elixir'
+        exec "!mix format %:p"
+    elseif &filetype == 'hcl'
+        exec "!terraform fmt %:p"
+    elseif &filetype == 'terraform'
+        exec "!terraform fmt %:p"
+    elseif &filetype == 'typescript'
+        exec "!npm run prettier -- -w %"
     endif
 endfunc
 
