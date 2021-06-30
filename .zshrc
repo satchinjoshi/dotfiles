@@ -25,7 +25,7 @@ alias vi="nvim"
 
 # Go
 export GOPATH="$HOME/code/go"
-export PATH="$PATH:$GOPATH/bin/"
+export PATH="$PATH:$GOPATH/bin"
 
 #Get back to vim by ctrl-z
 fancy-ctrl-z () {
@@ -53,6 +53,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 
 ### Cargo
 export PATH="$HOME/.cargo/bin:$PATH"
+source $HOME/.cargo/env
 
 # . $HOME/.asdf/asdf.sh
 # . $HOME/.asdf/completions/asdf.bash

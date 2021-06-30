@@ -29,6 +29,7 @@ Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'LnL7/vim-nix'
 Plug 'jvirtanen/vim-hcl'
+Plug 'chiedo/vim-case-convert'
 
 Plug 'joshdick/onedark.vim'
 
@@ -178,6 +179,7 @@ autocmd Filetype groovy setlocal ts=2 sts=2 sw=2
 
 " --------------- NERDTree -------------
 let NERDTreeShowHidden=1           "Show hidden file in NERDTree
+nmap <leader>op :NERDTreeToggle<CR>
 nmap ,m :NERDTreeToggle<CR>
 nmap ,n :NERDTreeFind<CR>
 
