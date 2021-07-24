@@ -246,6 +246,8 @@ func! FormatFile()
         exec "!terraform fmt %:p"
     elseif &filetype == 'typescript'
         exec "!npm run prettier -- -w %"
+    elseif &filetype == 'javascript'
+        exec "!npm run prettier -- -w %"
     endif
 endfunc
 
