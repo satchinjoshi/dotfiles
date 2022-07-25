@@ -4,10 +4,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
 Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
 " Plug 'vimwiki/vimwiki'
@@ -29,13 +29,20 @@ Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'LnL7/vim-nix'
 Plug 'jvirtanen/vim-hcl'
+Plug 'earthly/earthly.vim'
 Plug 'chiedo/vim-case-convert'
+Plug 'joukevandermaas/vim-ember-hbs'
+
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'joshdick/onedark.vim'
 
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
 Plug 'heavenshell/vim-jsdoc'
+
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 
 call plug#end()
 
@@ -64,6 +71,7 @@ let g:ale_linters.elixir = [ 'elixir-ls', 'credo' ]
 let g:ale_linters.terraform = [ 'terraform-ls', 'tflint', 'terraform' ]
 let g:ale_linters.typescript = [ 'prettier', 'eslint', 'tslint', 'tsserver', 'typecheck' ]
 let g:ale_linters.go = ['gofmt', 'golint', 'go vet', 'golangci-lint']
+let g:ale_linters.rust = ['analyzer']
 
 augroup AleGroup
   autocmd!
@@ -167,10 +175,10 @@ if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " let g:python_host_prog = '/usr/local/bin/python'
-    let g:python3_host_prog = '/usr/local/bin/python3'
+    " let g:python3_host_prog = '/opt/homebrew/bin/python3'
   else
     " let g:python_host_prog = '/usr/bin/python'
-    let g:python3_host_prog = '/usr/bin/python3'
+    " let g:python3_host_prog = '/usr/bin/python3'
   endif
 endif
 
@@ -326,3 +334,7 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+let g:fzf_layout = { 'down': '40%' }
+
+let g:go_list_type = "quickfix"
