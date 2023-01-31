@@ -37,9 +37,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'joshdick/onedark.vim'
 
-Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim'
-Plug 'heavenshell/vim-jsdoc'
+" Plug 'Quramy/tsuquyomi'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'heavenshell/vim-jsdoc'
 
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
@@ -171,11 +171,11 @@ set incsearch                "highlight the search text object
 set hlsearch                "highlight search result
 map <leader>hh :set hlsearch!<cr>
 
+let g:python3_host_prog = '/opt/homebrew/bin/python3'
 if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " let g:python_host_prog = '/usr/local/bin/python'
-    " let g:python3_host_prog = '/opt/homebrew/bin/python3'
   else
     " let g:python_host_prog = '/usr/bin/python'
     " let g:python3_host_prog = '/usr/bin/python3'
