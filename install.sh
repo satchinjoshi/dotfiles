@@ -19,15 +19,14 @@ elif output=$(which apt-get); then
       -y
 elif output=$(which brew); then
     brew install tmux \
-        zsh
-        --HEAD neovim
+        neovim
         the_silver_searcher
 else
     printf 'update the code for os\n'
     exit 0
 fi
 
-sudo chsh -s $(which zsh)
+#sudo chsh -s $(which zsh)
 
 # Install vim-plug
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -42,7 +41,7 @@ mkdir -p ~/.config/nvim/backup
 # link the vim, nvim, zsh, bash and tmux rc file
 ln -sf ~/dotfiles/.vimrc ~/.config/nvim/init.vim
 ln -sf ~/dotfiles/.vimrc ~/.vimrc
-rm ~/.zshrc
+mv ~/.zshrc ~/.zshrc.backup
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 
@@ -54,6 +53,5 @@ touch ~/.gitignore_global
 echo "tags" >> ~/.gitignore_global
 git config --global core.excludesfile ~/.gitignore_global
 
-git config --global user.email "satchin.joshi@gmail.com"
-git config --global user.name "Sachin Joshi"
-
+#git config --global user.email "satchin.joshi@gmail.com"
+#git config --global user.name "Sachin Joshi"
