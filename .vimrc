@@ -37,6 +37,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'joshdick/onedark.vim'
 
+Plug 'rodjek/vim-puppet'
+
 " Plug 'Quramy/tsuquyomi'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'heavenshell/vim-jsdoc'

@@ -4,11 +4,11 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH="$PATH:/opt/homebrew/bin"
 
 ZSH_THEME="kolo"
-ZSH_THEME="kolosac"
+#ZSH_THEME="kolosac"
 
 # plugins=(git helm kubectl composer httpie colorize docker brew osx aws kubectl)
 # plugins=(git helm kubectl composer httpie colorize docker brew osx aws kubectl)
-plugins=(git helm kubectl composer httpie colorize docker brew macos aws kubectl nix-shell gcloud)
+plugins=(git helm kubectl composer httpie colorize docker brew macos aws kubectl gcloud)
 
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
@@ -69,8 +69,8 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-source $ZSH_CUSTOM/plugins/nix-shell/nix-shell.plugin.zsh
-export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+#source $ZSH_CUSTOM/plugins/nix-shell/nix-shell.plugin.zsh
+#export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -97,11 +97,6 @@ complete -o nospace -C /usr/local/bin/vault vault
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/Users/sachinjoshi/.mix/escripts:$PATH"
-export PATH="$PATH:/Users/sachinjoshi/.emacs.d/bin"
-export PATH="$PATH:/opt/homebrew/opt/postgresql@12/bin"
-export LDFLAGS="-L/opt/homebrew/opt/postgresql@12/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/postgresql@12/include"
 
 if type brew &>/dev/null; then
     FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
