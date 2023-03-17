@@ -205,6 +205,8 @@ autocmd Filetype proto setlocal ts=2 sts=2 sw=2
 " autocmd Filetype vue setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3
 
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+
 " ======= autoreload rc file on save ========
 augroup reload_vimrc " {
     autocmd!
