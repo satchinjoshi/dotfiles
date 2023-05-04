@@ -46,12 +46,15 @@ Plug 'rodjek/vim-puppet'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 " setlocal spell spelllang=en_us
 
 " Add space after comment
 let g:NERDSpaceDelims = 1                 "Add a space after comment
+let g:NERDCustomDelimiters = { 'hcl': { 'left': '#','right': '' } }
 
 set binary
 
@@ -252,10 +255,10 @@ nnoremap <leader>ff :call FormatFile()<CR>
 func! FormatFile()
     if &filetype == 'elixir'
         exec "!mix format %:p"
+    elseif &filetype == 'hcl' && expand('%:e') == 'tf'
+        exec "!terraform fmt %"
     elseif &filetype == 'hcl'
-        exec "!terraform fmt %:p"
-    elseif &filetype == 'terraform'
-        exec "!terraform fmt %:p"
+        exec "!terragrunt hclfmt %"
     elseif &filetype == 'typescript'
         exec "!npm run prettier -- -w %"
     elseif &filetype == 'javascript'
