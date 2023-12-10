@@ -5,7 +5,7 @@ Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-editors/vim-elixir'
-Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
+" Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
@@ -70,9 +70,10 @@ let g:ale_list_window_size = 50
 let g:ale_terraform_langserver_executable = 'terraform-ls'
 " let g:ale_completion_tsserver_autoimport = 1
 let g:ale_completion_autoimport = 1
-let g:ale_elixir_elixir_ls_release = expand('~/.vim/plugged/vim-elixirls/elixir-ls/release')
-let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:true } }
-let g:ale_linters.elixir = [ 'elixir-ls', 'credo' ]
+" let g:ale_elixir_elixir_ls_release = expand('~/.vim/plugged/vim-elixirls/elixir-ls/release')
+" let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:true } }
+" let g:ale_linters.elixir = [ 'elixir-ls', 'credo' ]
+let g:ale_linters.elixir = [ 'credo' ]
 let g:ale_linters.terraform = [ 'terraform-ls', 'tflint', 'terraform' ]
 let g:ale_linters.typescript = [ 'prettier', 'eslint', 'tslint', 'tsserver', 'typecheck' ]
 let g:ale_linters.go = ['gofmt', 'golint', 'go vet', 'golangci-lint']
@@ -211,6 +212,9 @@ autocmd Filetype proto setlocal ts=2 sts=2 sw=2
 " autocmd Filetype apiblueprint setlocal ts=3 sts=3 sw=3
 
 au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile *.swiftui.heex set filetype=swift
+au BufRead,BufNewFile .envrc set filetype=bash
+autocmd Filetype swift setlocal ts=2 sts=2 sw=2
 
 " ======= autoreload rc file on save ========
 augroup reload_vimrc " {
@@ -263,6 +267,8 @@ func! FormatFile()
         exec "!npm run prettier -- -w %"
     elseif &filetype == 'javascript'
         exec "!npm run prettier -- -w %"
+    elseif &filetype == 'rust'
+        exec "!cargo fmt"
     endif
 endfunc
 

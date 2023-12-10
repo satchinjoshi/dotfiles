@@ -86,7 +86,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 #export CLOUDSDK_PYTHON=/usr/bin/python
-if [ -e /Users/sachinjoshi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/sachinjoshi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# if [ -e /Users/sachinjoshi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/sachinjoshi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 eval "$(direnv hook zsh)"
 
