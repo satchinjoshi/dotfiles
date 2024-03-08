@@ -47,6 +47,7 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 
 Plug 'github/copilot.vim'
+Plug 'jpmcb/nvim-llama'
 
 call plug#end()
 
