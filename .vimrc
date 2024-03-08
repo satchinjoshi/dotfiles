@@ -47,10 +47,11 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 
 Plug 'github/copilot.vim'
-Plug 'jpmcb/nvim-llama'
+Plug 'David-Kunz/gen.nvim'
 
 call plug#end()
 
+:lua require('gen').setup {model = "llama2"}
 " setlocal spell spelllang=en_us
 
 " Add space after comment
