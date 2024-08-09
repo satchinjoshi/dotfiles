@@ -5,12 +5,10 @@ Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdTree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'elixir-editors/vim-elixir'
-" Plug 'GrzegorzKozub/vim-elixirls', { 'do': ':ElixirLsCompileSync' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'vim-ruby/vim-ruby'
-" Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -27,11 +25,8 @@ Plug 'racer-rust/racer'
 Plug 'jparise/vim-graphql'
 Plug 'elmcast/elm-vim'
 Plug 'digitaltoad/vim-pug'
-Plug 'LnL7/vim-nix'
 Plug 'jvirtanen/vim-hcl'
-Plug 'earthly/earthly.vim'
 Plug 'chiedo/vim-case-convert'
-Plug 'joukevandermaas/vim-ember-hbs'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
@@ -39,19 +34,12 @@ Plug 'joshdick/onedark.vim'
 
 Plug 'rodjek/vim-puppet'
 
-" Plug 'Quramy/tsuquyomi'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'heavenshell/vim-jsdoc'
-
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
-
 Plug 'github/copilot.vim'
 Plug 'David-Kunz/gen.nvim'
 
 call plug#end()
 
-:lua require('gen').setup {model = "llama2"}
+:lua require('gen').setup {model = "zephyr:latest"}
 " setlocal spell spelllang=en_us
 
 " Add space after comment
