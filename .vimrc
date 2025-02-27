@@ -14,7 +14,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'dense-analysis/ale'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -35,11 +35,9 @@ Plug 'joshdick/onedark.vim'
 Plug 'rodjek/vim-puppet'
 
 Plug 'github/copilot.vim'
-Plug 'David-Kunz/gen.nvim'
 
 call plug#end()
 
-:lua require('gen').setup {model = "zephyr:latest"}
 " setlocal spell spelllang=en_us
 
 " Add space after comment
@@ -58,11 +56,7 @@ let g:ale_completion_enabled = 1
 let g:ale_javascript_eslint_executable = 'eslint'
 let g:ale_list_window_size = 50
 let g:ale_terraform_langserver_executable = 'terraform-ls'
-" let g:ale_completion_tsserver_autoimport = 1
 let g:ale_completion_autoimport = 1
-" let g:ale_elixir_elixir_ls_release = expand('~/.vim/plugged/vim-elixirls/elixir-ls/release')
-" let g:ale_elixir_elixir_ls_config = { 'elixirLS': { 'dialyzerEnabled': v:true } }
-" let g:ale_linters.elixir = [ 'elixir-ls', 'credo' ]
 let g:ale_linters.elixir = [ 'credo' ]
 let g:ale_linters.terraform = [ 'terraform-ls', 'tflint', 'terraform' ]
 let g:ale_linters.typescript = [ 'prettier', 'eslint', 'tslint', 'tsserver', 'typecheck' ]
@@ -190,6 +184,9 @@ nmap ,n :NERDTreeFind<CR>
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype eruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype elixir setlocal ts=2 sts=2 sw=2
+autocmd Filetype hcl setlocal ts=2 sts=2 sw=2
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype sql setlocal ts=2 sts=2 sw=2
 autocmd Filetype haskell setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
@@ -224,11 +221,6 @@ nnoremap <leader>so :source $MYVIMRC<cr>
 nnoremap <silent> <C-p> :FZF<CR>
 set rtp+=~/.fzf " ZFZ Fuzzy finder in go
 let g:fzf_source = 'find . -type f | grep -v "node_modules/" | grep -v "\.git/" | grep -v "\.mat$"'
-
-nnoremap <leader>gg :Gstatus<cr>
-
-" ====== Generate ctags ==========
-command! Rubyctags execute "Dispatch ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
 
 " ======= run current file in console =======
 nnoremap <leader>rf :call RunFile()<CR>
