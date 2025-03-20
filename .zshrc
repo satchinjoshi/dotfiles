@@ -48,8 +48,8 @@ stty start undef
 stty stop undef
 setopt noflowcontrol
 
-### FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+### FZF key bindings
+source <(fzf --zsh)
 
 ### Elixir iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -58,21 +58,11 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH="$HOME/.cargo/bin:$PATH"
 source $HOME/.cargo/env
 
-# . $HOME/.asdf/asdf.sh
-# . $HOME/.asdf/completions/asdf.bash
-
 export PATH=$PATH:~/.fabric8/bin
 export PATH=$HOME/bin:$PATH
-# source ~/bin/tmuxinator.zsh
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
-
-#source $ZSH_CUSTOM/plugins/nix-shell/nix-shell.plugin.zsh
-#export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH=$HOME/.local/bin:$PATH
 
@@ -81,19 +71,9 @@ complete -o nospace -F /usr/local/bin/aliyun aliyun
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# tabtab source for packages
-# uninstall by removing these lines
-# [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-
-#export CLOUDSDK_PYTHON=/usr/bin/python
-# if [ -e /Users/sachinjoshi/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/sachinjoshi/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
 eval "$(direnv hook zsh)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-complete -o nospace -C /usr/local/bin/vault vault
+complete -o nospace -C /opt/homebrew/bin/vault vault
 
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export PATH="/usr/local/opt/ruby/bin:$PATH"
